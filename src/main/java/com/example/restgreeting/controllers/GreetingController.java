@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +30,12 @@ public class GreetingController {
     logger.info(new Date() + QUERY_REQUEST + greeting.toString());
 
     return new ResponseEntity<>(greetingService.queryGreetings(greeting), HttpStatus.OK);
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<Greeting> getGreetingById(@PathVariable Long id) {
+    logger.info(new Date() + QUERY_REQUEST + "greeting with id " + id);
+
+    return new ResponseEntity<>(greetingService.getGreetingById(id), HttpStatus.OK);
   }
 }

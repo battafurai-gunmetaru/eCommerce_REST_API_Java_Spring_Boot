@@ -28,7 +28,7 @@ public class Greeting {
     this.greeting = greeting;
   }
 
-  public long getId() {
+  public Long getId() {
     return id;
   }
 

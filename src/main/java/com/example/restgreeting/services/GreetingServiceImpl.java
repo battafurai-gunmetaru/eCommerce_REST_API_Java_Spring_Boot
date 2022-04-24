@@ -1,14 +1,10 @@
 package com.example.restgreeting.services;
 
-import static com.example.restgreeting.constants.StringConstants.NOT_FOUND;
-
-import com.example.restgreeting.controllers.GreetingController;
 import com.example.restgreeting.exceptions.ServiceUnavailable;
 import com.example.restgreeting.models.Greeting;
 import com.example.restgreeting.repositories.GreetingRepository;
 import java.util.Date;
 import java.util.List;
-import javax.naming.ServiceUnavailableException;
 import javax.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +19,6 @@ public class GreetingServiceImpl implements GreetingService {
 
   @Autowired
   private GreetingRepository greetingRepository;
-
-  @Autowired
-  private GreetingService greetingService;
 
   @Override
   public List<Greeting> queryGreetings(Greeting greeting) {

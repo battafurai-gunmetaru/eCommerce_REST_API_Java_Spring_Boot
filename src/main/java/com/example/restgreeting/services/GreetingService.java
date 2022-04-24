@@ -6,4 +6,5 @@ import java.util.List;
 public interface GreetingService {
 
   List<Greeting> queryGreetings(Greeting greeting);
+  Greeting getGreetingById(Long id);
 }
