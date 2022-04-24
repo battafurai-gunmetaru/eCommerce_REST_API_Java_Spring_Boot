@@ -1,12 +1,12 @@
 spring:
   jpa:
-    database: POSTGRESQL
+    database: MYSQL
     show-sql: true
     hibernate:
       ddl-auto: create-drop
   datasource:
-    platform: postgres
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: root
-    driverClassName: org.postgresql.Driver
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/test
+#    username: username
+#    password: root
+#    driverClassName:
