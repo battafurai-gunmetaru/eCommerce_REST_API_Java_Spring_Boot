@@ -13,6 +13,7 @@ public class DataLoader implements CommandLineRunner {
   private GreetingRepository greetingRepository;
 
   private Greeting greeting;
+  private Greeting greetingTwo;
 
   @Override
   public void run(String... args) throws Exception {
@@ -21,6 +22,7 @@ public class DataLoader implements CommandLineRunner {
 
   private void loadGreetings() {
     greeting = greetingRepository.save(new Greeting("hello"));
+    greetingTwo = greetingRepository.save(new Greeting("hi"));
   }
 
 }

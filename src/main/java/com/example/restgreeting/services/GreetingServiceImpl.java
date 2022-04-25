@@ -41,12 +41,11 @@ public class GreetingServiceImpl implements GreetingService {
       Greeting greetingLookupResult = greetingRepository.findById(id).orElse(null);
       if (greetingLookupResult != null) {
         return greetingLookupResult;
-      }
+      } throw new ResourceNotFound(NOT_FOUND + " greeting with id " + id);
     } catch (Exception e) { //
       logger.error(e.getMessage());
       throw new ServiceUnavailable(e);
     }
-    throw new ResourceNotFound(NOT_FOUND + " greeting with id " + id);
   }
 
   @Override

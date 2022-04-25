@@ -19,13 +19,13 @@ public class Greeting {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @NotBlank(message = "greeting" + REQUIRED_FIELD)
-  private String greeting;
+  private String text;
 
   public Greeting() {
   }
 
   public Greeting(String greeting) {
-    this.greeting = greeting;
+    this.text = greeting;
   }
 
   public Long getId() {
@@ -36,12 +36,12 @@ public class Greeting {
     this.id = id;
   }
 
-  public String getGreeting() {
-    return greeting;
+  public String getText() {
+    return text;
   }
 
-  public void setGreeting(String greeting) {
-    this.greeting = greeting;
+  public void setText(String greeting) {
+    this.text = greeting;
   }
 
   @Override
@@ -53,23 +53,23 @@ public class Greeting {
       return false;
     }
     Greeting greeting1 = (Greeting) o;
-    return id == greeting1.id && Objects.equals(greeting, greeting1.greeting);
+    return id == greeting1.id && Objects.equals(text, greeting1.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, greeting);
+    return Objects.hash(id, text);
   }
 
   @Override
   public String toString() {
-    return "Greeting{" + "Id=" + id + ", greeting='" + greeting + '\'' + '}';
+    return "Greeting{" + "Id=" + id + ", Text='" + text + '\'' + '}';
   }
 
   @JsonIgnore
   public boolean isEmpty() {
     return Objects.isNull(id) &&
-        Objects.isNull(greeting);
+        Objects.isNull(text);
   }
 
 }
