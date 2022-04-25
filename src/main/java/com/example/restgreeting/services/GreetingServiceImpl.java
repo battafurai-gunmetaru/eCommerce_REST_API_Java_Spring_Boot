@@ -20,7 +20,7 @@ public class GreetingServiceImpl implements GreetingService {
 
   @Autowired
   private GreetingRepository greetingRepository;
-  
+
   @Override
   public List<Greeting> queryGreetings(Greeting greeting) {
     try {

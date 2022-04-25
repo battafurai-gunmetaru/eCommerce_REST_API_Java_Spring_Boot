@@ -33,6 +33,9 @@ public class GreetingController {
   @Autowired
   private GreetingService greetingService;
 
+  //todo:manually test API through postman,
+  // design unit and integration tests,
+  // use Selenium, log, doc
   @GetMapping
   public ResponseEntity<List<Greeting>> queryGreetings(Greeting greeting) {
     logger.info(new Date() + QUERY_REQUEST + greeting.toString());
