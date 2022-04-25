@@ -1,11 +1,12 @@
 package com.example.restgreeting.services;
 
+import static com.example.restgreeting.constants.StringConstants.NOT_FOUND;
+
+import com.example.restgreeting.exceptions.ResourceNotFound;
 import com.example.restgreeting.exceptions.ServiceUnavailable;
 import com.example.restgreeting.models.Greeting;
 import com.example.restgreeting.repositories.GreetingRepository;
-import java.util.Date;
 import java.util.List;
-import javax.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class GreetingServiceImpl implements GreetingService {
 
   @Autowired
   private GreetingRepository greetingRepository;
-
+  
   @Override
   public List<Greeting> queryGreetings(Greeting greeting) {
     try {
@@ -30,21 +31,54 @@ public class GreetingServiceImpl implements GreetingService {
         return greetingRepository.findAll(greetingExample);
       }
     } catch (Exception e) {
-      logger.info(new Date() + e.getMessage());
-      throw e; // might have to change this later
+      logger.error(e.getMessage());
+      throw new ServiceUnavailable(e);
     }
   }
 
   public Greeting getGreetingById(Long id) {
     try {
       Greeting greetingLookupResult = greetingRepository.findById(id).orElse(null);
-      if(greetingLookupResult != null){
+      if (greetingLookupResult != null) {
         return greetingLookupResult;
       }
-
-    } catch (Exception e) {
-      throw new ServiceUnavailable(e); // might have to change this later
+    } catch (Exception e) { //
+      logger.error(e.getMessage());
+      throw new ServiceUnavailable(e);
     }
-      throw new EntityNotFoundException();
+    throw new ResourceNotFound(NOT_FOUND + " greeting with id " + id);
+  }
+
+  @Override
+  public Greeting postGreeting(Greeting greeting) {
+    try {
+      return greetingRepository.save(greeting);
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+  }
+
+  @Override
+  public Greeting updateGreetingById(Long id, Greeting greeting) {
+
+    boolean greetingExists = greetingRepository.existsById(id);
+    if (!greetingExists) {
+      throw new ResourceNotFound(NOT_FOUND + "greeting with id " + id);
+    }
+    try {
+      return greetingRepository.save(greeting);
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
+  }
+
+  @Override
+  public void deleteGreetingById(Long id) {
+    try {
+      getGreetingById(id);
+      greetingRepository.deleteById(id);
+    } catch (Exception e) {
+      throw new ServiceUnavailable(e);
+    }
   }
 }

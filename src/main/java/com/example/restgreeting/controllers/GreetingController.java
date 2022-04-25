@@ -51,7 +51,7 @@ public class GreetingController {
   public ResponseEntity<Greeting> postGreeting(@Valid @RequestBody Greeting greeting) {
     logger.info(new Date() + POST_REQUEST + "greeting");
 
-    return new ResponseEntity<>(greetingService.postGreeting(greeting), HttpStatus.CREATED);
+    return new ResponseEntity<Greeting>(greetingService.postGreeting(greeting), HttpStatus.CREATED);
   }
 
   @PutMapping("/{id}")
@@ -59,13 +59,15 @@ public class GreetingController {
       @Valid @RequestBody Greeting greeting) {
     logger.info(new Date() + UPDATE_REQUEST + "greeting with id " + id);
 
-    return new ResponseEntity<>(greetingService.updateGreetingById(id, greeting), HttpStatus.OK);
+    return new ResponseEntity<Greeting>(greetingService.updateGreetingById(id, greeting),
+        HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<Greeting> deleteGreetingById(@PathVariable Long id) {
     logger.info(new Date() + DELETE_REQUEST + "greeting with id " + id);
 
-    return new ResponseEntity<>(greetingService.deleteGreetingById(id), HttpStatus.NO_CONTENT);
+    greetingService.deleteGreetingById(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
 }
