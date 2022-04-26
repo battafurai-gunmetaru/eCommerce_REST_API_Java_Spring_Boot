@@ -10,4 +10,10 @@ public class StringConstants {
 
   public static final String DELETE_REQUEST = "Delete request received for ";
   public static final String POST_REQUEST = "Post request received for ";
+  public static final String BAD_DATA = "Bad data";
+  public static final String SERVER_ERROR = "Server error";
+  public static final String UNEXPECTED_ERROR = "Unexpected server error";
+
+  //endpoint constants
+  public static final String CONTEXT_GREETINGS = "/greetings";
 }

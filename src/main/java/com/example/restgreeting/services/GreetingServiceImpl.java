@@ -2,16 +2,20 @@ package com.example.restgreeting.services;
 
 import static com.example.restgreeting.constants.StringConstants.NOT_FOUND;
 
+import com.example.restgreeting.exceptions.BadDataResponse;
 import com.example.restgreeting.exceptions.ResourceNotFound;
 import com.example.restgreeting.exceptions.ServiceUnavailable;
+import com.example.restgreeting.exceptions.UniqueFieldViolation;
 import com.example.restgreeting.models.Greeting;
 import com.example.restgreeting.repositories.GreetingRepository;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 @Service
 public class GreetingServiceImpl implements GreetingService {
@@ -36,16 +40,21 @@ public class GreetingServiceImpl implements GreetingService {
     }
   }
 
+  @Override
   public Greeting getGreetingById(Long id) {
-    try {
-      Greeting greetingLookupResult = greetingRepository.findById(id).orElse(null);
-      if (greetingLookupResult != null) {
-        return greetingLookupResult;
-      } throw new ResourceNotFound(NOT_FOUND + " greeting with id " + id);
-    } catch (Exception e) { //
-      logger.error(e.getMessage());
-      throw new ServiceUnavailable(e);
+    if(id < 1) {
+      throw new BadDataResponse("id must be positive");
     }
+    Greeting greetingLookUpResult;
+    try {
+      greetingLookUpResult = greetingRepository.findById(id).orElse(null);
+    } catch (DataAccessException e) {
+      throw new ServiceUnavailable(e.getMessage());
+    }
+    if (greetingLookUpResult != null) {
+      return greetingLookUpResult;
+    }
+    throw new ResourceNotFound(NOT_FOUND + " greeting with id " + id);
   }
 
   @Override

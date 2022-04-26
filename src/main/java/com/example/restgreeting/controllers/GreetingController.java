@@ -1,5 +1,6 @@
 package com.example.restgreeting.controllers;
 
+import static com.example.restgreeting.constants.StringConstants.CONTEXT_GREETINGS;
 import static com.example.restgreeting.constants.StringConstants.DELETE_REQUEST;
 import static com.example.restgreeting.constants.StringConstants.POST_REQUEST;
 import static com.example.restgreeting.constants.StringConstants.QUERY_REQUEST;
@@ -25,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/greetings")
+@RequestMapping(CONTEXT_GREETINGS)
 public class GreetingController {
 
   private final Logger logger = LoggerFactory.getLogger(GreetingController.class);
@@ -35,7 +36,7 @@ public class GreetingController {
 
   //todo:manually test API through postman,
   // design unit and integration tests,
-  // use Selenium, log, doc
+  // use log, doc
   @GetMapping
   public ResponseEntity<List<Greeting>> queryGreetings(Greeting greeting) {
     logger.info(new Date() + QUERY_REQUEST + greeting.toString());
