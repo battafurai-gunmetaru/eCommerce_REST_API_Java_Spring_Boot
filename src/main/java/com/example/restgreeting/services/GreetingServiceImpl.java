@@ -5,9 +5,9 @@ import static com.example.restgreeting.constants.StringConstants.NOT_FOUND;
 import com.example.restgreeting.exceptions.BadDataResponse;
 import com.example.restgreeting.exceptions.ResourceNotFound;
 import com.example.restgreeting.exceptions.ServiceUnavailable;
-import com.example.restgreeting.exceptions.UniqueFieldViolation;
 import com.example.restgreeting.models.Greeting;
 import com.example.restgreeting.repositories.GreetingRepository;
+import java.util.Comparator;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 @Service
 public class GreetingServiceImpl implements GreetingService {
@@ -29,7 +28,9 @@ public class GreetingServiceImpl implements GreetingService {
   public List<Greeting> queryGreetings(Greeting greeting) {
     try {
       if (greeting.isEmpty()) {
-        return greetingRepository.findAll();
+        List<Greeting> greetings = greetingRepository.findAll();
+        greetings.sort(Comparator.comparing(Greeting::getId));
+        return greetings;
       } else {
         Example<Greeting> greetingExample = Example.of(greeting);
         return greetingRepository.findAll(greetingExample);
@@ -42,8 +43,8 @@ public class GreetingServiceImpl implements GreetingService {
 
   @Override
   public Greeting getGreetingById(Long id) {
-    if(id < 1) {
-      throw new BadDataResponse("id must be positive");
+    if (id < 1) {
+      throw new BadDataResponse("id must be positive and cannot be zero");
     }
     Greeting greetingLookUpResult;
     try {
@@ -68,25 +69,35 @@ public class GreetingServiceImpl implements GreetingService {
 
   @Override
   public Greeting updateGreetingById(Long id, Greeting greeting) {
-
-    boolean greetingExists = greetingRepository.existsById(id);
-    if (!greetingExists) {
+    if (id < 1) {
+      throw new BadDataResponse("id must be positive and cannot be zero");
+    }
+    Greeting updatedGreeting = null;
+    if (!greetingRepository.existsById(id)) {
       throw new ResourceNotFound(NOT_FOUND + "greeting with id " + id);
     }
     try {
-      return greetingRepository.save(greeting);
+      greeting.setId(id);
+      updatedGreeting = greetingRepository.save(greeting);
     } catch (Exception e) {
       throw new ServiceUnavailable(e);
     }
+    return updatedGreeting;
   }
 
   @Override
   public void deleteGreetingById(Long id) {
+    if (id < 1) {
+      throw new BadDataResponse("id must be positive and cannot be zero");
+    }
+    Greeting greetingToDelete = getGreetingById(id);
+    if (greetingToDelete.isEmpty()) {
+      throw new ResourceNotFound(NOT_FOUND + "greeting with id " + id);
+    }
     try {
-      getGreetingById(id);
       greetingRepository.deleteById(id);
     } catch (Exception e) {
-      throw new ServiceUnavailable(e);
+      throw new ServiceUnavailable("Something went wrong");
     }
   }
 }

@@ -10,9 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -23,7 +21,7 @@ public class Greeting {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @Column(unique=true)
+  @Column(unique = true)
   @NotNull(message = "text " + REQUIRED_FIELD)
   @Size(min = 2, max = 100, message = "Greeting must be between 2 and 100 characters in length")
   private String text;
