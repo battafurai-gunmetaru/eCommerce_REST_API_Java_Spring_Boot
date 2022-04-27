@@ -37,8 +37,7 @@ public class GreetingController {
   @Autowired
   private GreetingService greetingService;
 
-  //todo:manually test API through postman,
-  // design unit and integration tests,
+  //todo: design unit and integration tests,
   // use log, doc
   @GetMapping
   public ResponseEntity<List<Greeting>> queryGreetings(Greeting greeting) {
