@@ -4,13 +4,16 @@ import static com.example.restgreeting.constants.StringConstants.REQUIRED_FIELD;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Positive;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "greetings")
@@ -19,7 +22,10 @@ public class Greeting {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  @NotBlank(message = "greeting" + REQUIRED_FIELD)
+
+  @Column(unique=true)
+  @NotNull(message = "text " + REQUIRED_FIELD)
+  @Size(min = 2, max = 100, message = "Greeting must be between 2 and 100 characters in length")
   private String text;
 
   public Greeting() {

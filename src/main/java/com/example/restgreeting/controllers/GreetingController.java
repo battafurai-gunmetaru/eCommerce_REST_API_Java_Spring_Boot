@@ -6,10 +6,13 @@ import static com.example.restgreeting.constants.StringConstants.POST_REQUEST;
 import static com.example.restgreeting.constants.StringConstants.QUERY_REQUEST;
 import static com.example.restgreeting.constants.StringConstants.UPDATE_REQUEST;
 
+import com.example.restgreeting.exceptions.BadDataResponse;
 import com.example.restgreeting.models.Greeting;
 import com.example.restgreeting.services.GreetingService;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +48,7 @@ public class GreetingController {
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<Greeting> getGreetingById(@PathVariable Long id) throws Exception {
+  public ResponseEntity<Greeting> getGreetingById(@PathVariable Long id) {
     logger.info(new Date() + QUERY_REQUEST + "greeting with id " + id);
 
     return new ResponseEntity<>(greetingService.getGreetingById(id), HttpStatus.OK);
@@ -55,6 +58,12 @@ public class GreetingController {
   public ResponseEntity<Greeting> postGreeting(@Valid @RequestBody Greeting greeting) {
     logger.info(new Date() + POST_REQUEST + "greeting");
 
+    String pattern = "[^A-Za-z\\s\\?!.]";
+    Pattern notAGreeting = Pattern.compile(pattern);
+    Matcher matcher = notAGreeting.matcher(greeting.getText());
+    if (matcher.find()) {
+      throw new BadDataResponse("Greeting text must only contain letters and punctuation");
+    }
     return new ResponseEntity<Greeting>(greetingService.postGreeting(greeting), HttpStatus.CREATED);
   }
 
