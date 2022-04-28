@@ -1,4 +1,4 @@
-package com.example.restgreeting;
+package com.example.restgreeting.tests;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
