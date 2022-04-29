@@ -85,13 +85,13 @@ class GreetingControllerTest { //todo: add more integration tests for edge cases
         }""";
 
     mockMvc.perform(post(CONTEXT_GREETINGS)
-        .contentType(MediaType.APPLICATION_JSON)
-        .content(json))
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
         .andExpect(createdStatus);
   }
 
   @Test
-  public void postNonUniqueGreetingReturns503UniqueViolationConstraint() throws  Exception {
+  public void postNonUniqueGreetingReturns503UniqueViolationConstraint() throws Exception {
 
     String json = """
         {
@@ -105,7 +105,7 @@ class GreetingControllerTest { //todo: add more integration tests for edge cases
   }
 
   @Test
-  public void postGreetingWithOnlyOneCharReturns400BadRequest() throws  Exception {
+  public void postGreetingWithOnlyOneCharReturns400BadRequest() throws Exception {
 
     String json = """
         {
@@ -119,7 +119,7 @@ class GreetingControllerTest { //todo: add more integration tests for edge cases
   }
 
   @Test
-  public void postNonStringGreetingReturns400BadRequest() throws  Exception {
+  public void postNonStringGreetingReturns400BadRequest() throws Exception {
 
     String json = """
         {
@@ -133,7 +133,7 @@ class GreetingControllerTest { //todo: add more integration tests for edge cases
   }
 
   @Test
-  public void postEmptyGreetingJSONObjectReturns400BadRequest() throws  Exception {
+  public void postEmptyGreetingJSONObjectReturns400BadRequest() throws Exception {
 
     String json = """
         {
@@ -177,7 +177,7 @@ class GreetingControllerTest { //todo: add more integration tests for edge cases
   }
 
   @Test
-  public void deleteReturns204NoContentAndStaysDeleted() throws Exception{
+  public void deleteReturns204NoContentAndStaysDeleted() throws Exception {
 
     mockMvc.perform(delete(CONTEXT_GREETINGS + "/1"))
         .andExpect(deletedStatus);
@@ -185,7 +185,6 @@ class GreetingControllerTest { //todo: add more integration tests for edge cases
     mockMvc.perform(get(CONTEXT_GREETINGS + "/1"))
         .andExpect(notFoundStatus);
   }
-
 
 
 }

@@ -3,9 +3,13 @@ package com.example.restgreeting.tests.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.example.restgreeting.exceptions.BadDataResponse;
+import com.example.restgreeting.exceptions.ResourceNotFound;
+import com.example.restgreeting.exceptions.ServiceUnavailable;
 import com.example.restgreeting.models.Greeting;
 import com.example.restgreeting.repositories.GreetingRepository;
 import com.example.restgreeting.services.GreetingService;
@@ -19,7 +23,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Example;
 
 class GreetingServiceImplTest {
@@ -62,7 +65,15 @@ class GreetingServiceImplTest {
   }
 
   @Test
+  public void queryGreetingsThrowsServiceUnavailable() {
+    doThrow(ServiceUnavailable.class).when(greetingRepository).findAll();
+    assertThrows(ServiceUnavailable.class,
+        () -> greetingServiceImpl.queryGreetings(new Greeting()));
+  }
+
+  @Test
   public void getGreetingByExistingIdReturnsGreeting() {
+    //when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
     when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.of(greeting));
     Greeting result = greetingServiceImpl.getGreetingById(1L);
     assertEquals(greeting, result);
@@ -70,14 +81,21 @@ class GreetingServiceImplTest {
 
   @Test
   public void getGreetingByNonExistentIdThrowsNotFound() {
-    when(greetingRepository.findById(any(Long.class))).thenThrow(NotFoundException.class);
-    assertThrows(NotFoundException.class, () -> greetingServiceImpl.getGreetingById(999L));
+    when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.empty());
+    assertThrows(ResourceNotFound.class, () -> greetingServiceImpl.getGreetingById(999L));
   }
 
   @Test
   public void getGreetingByNegativeIdThrowsBadDataResponse() {
     when(greetingRepository.findById(any(Long.class))).thenThrow(BadDataResponse.class);
     assertThrows(BadDataResponse.class, () -> greetingServiceImpl.getGreetingById(-18L));
+  }
+
+  @Test
+  public void getGreetingByIdThrowsServiceUnavailable() {
+    //when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
+    doThrow(ServiceUnavailable.class).when(greetingRepository).findById(any(Long.class));
+    assertThrows(ServiceUnavailable.class, () -> greetingServiceImpl.getGreetingById(1L));
   }
 
   @Test
@@ -88,11 +106,73 @@ class GreetingServiceImplTest {
   }
 
   @Test
+  public void postGreetingThrowsServiceUnavailable() {
+    doThrow(ServiceUnavailable.class).when(greetingRepository).save(any(Greeting.class));
+    assertThrows(ServiceUnavailable.class,
+        () -> greetingServiceImpl.postGreeting(new Greeting()));
+  }
+
+  @Test
   public void updateGreetingWithValidIdAndBodyReturnsGreetingSuccessfully() {
+    when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
     when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.of(greeting));
     when(greetingRepository.save(any(Greeting.class))).thenReturn(greeting);
     Greeting result = greetingServiceImpl.updateGreetingById(1L, new Greeting());
     assertEquals(greeting, result);
   }
 
+  @Test
+  public void updateGreetingWithNonExistentIdThrowsNotFound() {
+    when(greetingRepository.existsById(any(Long.class))).thenReturn(false);
+    assertThrows(ResourceNotFound.class,
+        () -> greetingServiceImpl.updateGreetingById(999L, new Greeting()));
+  }
+
+  @Test
+  public void updateGreetingWithNegativeIdThrowsBadDataResponse() {
+    assertThrows(BadDataResponse.class,
+        () -> greetingServiceImpl.updateGreetingById(-8L, new Greeting()));
+  }
+
+  @Test
+  public void updateGreetingThrowsServiceUnavailable() {
+    when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
+    when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.of(greeting));
+    doThrow(ServiceUnavailable.class).when(greetingRepository).save(any(Greeting.class));
+    assertThrows(ServiceUnavailable.class,
+        () -> greetingServiceImpl.updateGreetingById(1L, new Greeting()));
+  }
+
+  @Test
+  public void deleteGreetingByExistentIdReturns204NoContent() {
+    //when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
+    when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.of(greeting));
+    greetingServiceImpl.deleteGreetingById(1L);
+    verify(greetingRepository).deleteById(any());
+  }
+
+  @Test
+  public void deleteGreetingByNonExistentIdThrows404NotFound() {
+    when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.empty());
+    assertThrows(ResourceNotFound.class, () -> greetingServiceImpl.deleteGreetingById(999L));
+  }
+
+  @Test
+  public void deleteGreetingByNegativeIdThrows400BadDataResponse() {
+    assertThrows(BadDataResponse.class, () -> greetingServiceImpl.deleteGreetingById(-9L));
+  }
+
+  @Test
+  public void deleteGreetingThrowsServiceUnavailable() {
+    when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
+    when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.of(greeting));
+    doThrow(ServiceUnavailable.class).when(greetingRepository).deleteById(any(Long.class));
+    assertThrows(ServiceUnavailable.class, () -> greetingServiceImpl.deleteGreetingById(1L));
+  }
+
+  @Test
+  public void deleteEmptyGreetingThrowsResourceNotFound() {
+    when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.empty());
+    assertThrows(ResourceNotFound.class, () -> greetingServiceImpl.deleteGreetingById(40L));
+  }
 }

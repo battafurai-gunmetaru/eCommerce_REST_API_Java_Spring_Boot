@@ -37,8 +37,8 @@ public class GreetingController {
   @Autowired
   private GreetingService greetingService;
 
-  //todo: design unit and integration tests,
-  // use log, doc
+  //todo: design unit tests,
+  // use log, doc, readme
   @GetMapping
   public ResponseEntity<List<Greeting>> queryGreetings(Greeting greeting) {
     logger.info(new Date() + QUERY_REQUEST + greeting.toString());

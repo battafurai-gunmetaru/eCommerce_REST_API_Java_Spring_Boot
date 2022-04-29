@@ -12,7 +12,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
@@ -49,11 +48,11 @@ public class GreetingServiceImpl implements GreetingService {
     Greeting greetingLookUpResult;
     try {
       greetingLookUpResult = greetingRepository.findById(id).orElse(null);
-    } catch (DataAccessException e) {
+      if (greetingLookUpResult != null) {
+        return greetingLookUpResult;
+      }
+    } catch (Exception e) {
       throw new ServiceUnavailable(e.getMessage());
-    }
-    if (greetingLookUpResult != null) {
-      return greetingLookUpResult;
     }
     throw new ResourceNotFound(NOT_FOUND + " greeting with id " + id);
   }
@@ -90,10 +89,7 @@ public class GreetingServiceImpl implements GreetingService {
     if (id < 1) {
       throw new BadDataResponse("id must be positive and cannot be zero");
     }
-    Greeting greetingToDelete = getGreetingById(id);
-    if (greetingToDelete.isEmpty()) {
-      throw new ResourceNotFound(NOT_FOUND + "greeting with id " + id);
-    }
+    getGreetingById(id);
     try {
       greetingRepository.deleteById(id);
     } catch (Exception e) {
