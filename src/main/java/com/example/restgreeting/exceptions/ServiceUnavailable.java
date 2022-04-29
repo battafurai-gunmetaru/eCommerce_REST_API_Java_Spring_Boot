@@ -1,5 +1,8 @@
 package com.example.restgreeting.exceptions;
 
+/**
+ * This class contains custom exception info to be incorporated in the Exception Controller.
+ */
 public class ServiceUnavailable extends RuntimeException {
 
   public ServiceUnavailable() {

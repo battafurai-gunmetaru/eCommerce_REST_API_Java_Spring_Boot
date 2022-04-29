@@ -2,6 +2,9 @@ package com.example.restgreeting.exceptions;
 
 import java.util.Date;
 
+/**
+ * This class contains the properties of the response object that the ExceptionHandler will return.
+ */
 public class ExceptionResponse {
 
   private Date timestamp;

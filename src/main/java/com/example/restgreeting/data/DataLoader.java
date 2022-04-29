@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+/**
+ * This class loads data into the database upon launching the application
+ */
 @Component
 public class DataLoader implements CommandLineRunner {
 

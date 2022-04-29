@@ -13,6 +13,10 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/**
+ * This Greeting Entity contains all information and properties about a Greeting Object (in this
+ * case, the text property of the Greeting).
+ */
 @Entity
 @Table(name = "greetings")
 public class Greeting {

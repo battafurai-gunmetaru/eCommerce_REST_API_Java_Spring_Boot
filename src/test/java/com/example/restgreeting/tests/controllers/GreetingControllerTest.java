@@ -24,10 +24,13 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+/**
+ * Contains the integration tests for the GreetingController.
+ */
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-class GreetingControllerTest { //todo: add more integration tests for edge cases (check postman)
+class GreetingControllerTest {
 
   @Autowired
   private WebApplicationContext webApplicationContext;

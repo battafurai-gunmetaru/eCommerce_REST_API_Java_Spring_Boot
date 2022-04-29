@@ -25,12 +25,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.domain.Example;
 
+/**
+ * Contains the unit tests for the GreetingServiceImpl.
+ */
 class GreetingServiceImplTest {
 
   @Mock
   private GreetingRepository greetingRepository;
   @Mock
-  private GreetingService greetingService; // at mock?
+  private GreetingService greetingService;
   private AutoCloseable closeable;
 
   @InjectMocks

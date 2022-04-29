@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/**
+ * This controller is used for intercepting and routing exceptions across the entire application.
+ */
 @ControllerAdvice
 public class ExceptionController {
 

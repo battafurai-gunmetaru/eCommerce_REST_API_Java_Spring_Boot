@@ -3,6 +3,9 @@ package com.example.restgreeting.exceptions;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This class contains custom exception info to be incorporated in the Exception Controller.
+ */
 public class ValidationExceptionResponse extends ExceptionResponse {
 
   public List<String> validationErrors;
