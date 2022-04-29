@@ -1,3 +1,7 @@
+logging:
+  file:
+    name: src/main/resources/restGreeting.log
+
 spring:
   jpa:
     database: MYSQL

@@ -1,0 +1,24 @@
+2022-04-28 21:30:21.154  INFO 10737 --- [main] c.e.r.RestGreetingApplication            : Starting RestGreetingApplication using Java 18.0.1 on brandyn-HP-Desktop-M01-F0xxx with PID 10737 (/home/brandyn/Desktop/Code/Java/rest-greeting/target/classes started by brandyn in /home/brandyn/Desktop/Code/Java/rest-greeting)
+2022-04-28 21:30:21.157  INFO 10737 --- [main] c.e.r.RestGreetingApplication            : No active profile set, falling back to 1 default profile: "default"
+2022-04-28 21:30:22.385  INFO 10737 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-28 21:30:22.468  INFO 10737 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 1 JPA repository interfaces.
+2022-04-28 21:30:23.378  INFO 10737 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-04-28 21:30:23.398  INFO 10737 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-04-28 21:30:23.398  INFO 10737 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-04-28 21:30:23.708  INFO 10737 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-28 21:30:23.709  INFO 10737 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2410 ms
+2022-04-28 21:30:24.038  INFO 10737 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-28 21:30:24.096  INFO 10737 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-04-28 21:30:24.236  INFO 10737 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-28 21:30:24.380  INFO 10737 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-04-28 21:30:25.483  INFO 10737 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-04-28 21:30:25.503  INFO 10737 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-04-28 21:30:28.928  INFO 10737 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-28 21:30:28.955  INFO 10737 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-28 21:30:29.313  WARN 10737 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-28 21:30:29.784  INFO 10737 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-04-28 21:30:29.793  INFO 10737 --- [main] c.e.r.RestGreetingApplication            : Started RestGreetingApplication in 9.434 seconds (JVM running for 10.187)
+2022-04-28 21:30:40.767  INFO 10737 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-28 21:30:40.768  INFO 10737 --- [SpringApplicationShutdownHook] .SchemaDropperImpl$DelayedDropActionImpl : HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2022-04-28 21:30:41.296  INFO 10737 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-04-28 21:30:41.307  INFO 10737 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
