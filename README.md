@@ -105,5 +105,5 @@ Swagger UI Link: <http://localhost:8080/swagger-ui.html>
 
 LinkedIn: <https://www.linkedin.com/in/brandyn-tse-085872166>
 
-Github: <>
+Github: <https://github.com/battafurai-gunmetaru>
 

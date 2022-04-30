@@ -42,8 +42,6 @@ public class GreetingController {
   @Autowired
   private GreetingService greetingService;
 
-  //todo: github links
-
   /**
    * Queries Greetings.
    *
