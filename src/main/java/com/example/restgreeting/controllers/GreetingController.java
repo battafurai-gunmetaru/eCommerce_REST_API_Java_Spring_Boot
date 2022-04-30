@@ -42,7 +42,7 @@ public class GreetingController {
   @Autowired
   private GreetingService greetingService;
 
-  //todo: swagger docs, readme
+  //todo: github links
 
   /**
    * Queries Greetings.
