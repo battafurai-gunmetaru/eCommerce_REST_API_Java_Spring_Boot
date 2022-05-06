@@ -37,8 +37,7 @@ public class Item {
   public Item() {
   }
 
-  public Item(Long id, Long productId, Integer quantity, Order order) {
-    this.id = id;
+  public Item(Long productId, Integer quantity, Order order) {
     this.productId = productId;
     this.quantity = quantity;
     this.order = order;
