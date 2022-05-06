@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * This launches the Spring Boot Application
  */
 @SpringBootApplication
-public class RestGreetingApplication {
+public class EcommerceApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(RestGreetingApplication.class, args);
+    SpringApplication.run(EcommerceApplication.class, args);
   }
 
 }

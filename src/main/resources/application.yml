@@ -1,6 +1,6 @@
 logging:
   file:
-    name: src/main/resources/restGreeting.log
+    name: src/main/resources/eCommerce.log
 
 spring:
   jpa:

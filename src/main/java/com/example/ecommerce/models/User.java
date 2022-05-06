@@ -44,7 +44,8 @@ public class User {
   @Length(min = 8, message = BAD_DATA + "password must be at least 8 characters in length")
   private String password;
 
-  public User() {}
+  public User() {
+  }
 
   public User(String name, String title,
       @NotNull(message = "roles" + REQUIRED_FIELD) String[] roles,

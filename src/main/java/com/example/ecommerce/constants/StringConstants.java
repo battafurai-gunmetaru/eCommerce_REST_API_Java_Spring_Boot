@@ -19,4 +19,9 @@ public class StringConstants {
 
   //endpoint constants
   public static final String CONTEXT_GREETINGS = "/greetings";
+  public static final String CONTEXT_CUSTOMERS = "/customers";
+  public static final String CONTEXT_ORDERS = "/orders";
+  public static final String CONTEXT_PRODUCTS = "/products";
+  public static final String CONTEXT_USERS = "/users";
+
 }

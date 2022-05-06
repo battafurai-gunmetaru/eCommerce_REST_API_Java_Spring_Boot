@@ -48,7 +48,8 @@ public class Order {
   @NumberFormat(style = Style.CURRENCY)
   private BigDecimal orderTotal;
 
-  public Order() {}
+  public Order() {
+  }
 
   public Order(Long customerId, Date date, Set<Item> items, BigDecimal orderTotal) {
     this.customerId = customerId;
