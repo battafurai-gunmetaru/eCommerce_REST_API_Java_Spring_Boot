@@ -5,6 +5,7 @@ import static com.example.ecommerce.constants.StringConstants.REQUIRED_FIELD;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +29,7 @@ public class Product {
   private String type;
 
   @NotBlank(message = "name" + REQUIRED_FIELD)
+  @Column(name = "product_name")
   private String name;
 
   @NotBlank(message = "description" + REQUIRED_FIELD)

@@ -35,9 +35,9 @@ public class Order {
   @Valid
   private Long customerId;
 
-  @NotBlank(message = "date" + REQUIRED_FIELD)
-  @JsonFormat(pattern = "yyyy-MM-dd", lenient = OptBoolean.FALSE)
-  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @NotNull(message = "Date" + REQUIRED_FIELD)
+  @JsonFormat(pattern = "yyyy-MM-dd", lenient = OptBoolean.FALSE) // why is this here?
+  @DateTimeFormat(pattern = "yyyy-MM-dd") // does this do anything?
   private Date date;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

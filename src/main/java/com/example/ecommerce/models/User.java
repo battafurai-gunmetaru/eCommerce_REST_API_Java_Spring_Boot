@@ -26,6 +26,7 @@ public class User {
   private Long id;
 
   @NotBlank(message = "name" + REQUIRED_FIELD)
+  @Column(name = "user_name")
   private String name;
 
   @NotBlank(message = "title" + REQUIRED_FIELD)

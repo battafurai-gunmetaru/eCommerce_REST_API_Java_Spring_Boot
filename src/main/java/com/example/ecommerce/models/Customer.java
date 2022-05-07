@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import org.checkerframework.checker.units.qual.C;
 
 @Entity
 @Table(name = "customers")
@@ -24,6 +25,7 @@ public class Customer {
   private Long id;
 
   @NotBlank(message = "name" + REQUIRED_FIELD)
+  @Column(name = "customer_name")
   private String name;
 
   @NotBlank(message = "email" + REQUIRED_FIELD)

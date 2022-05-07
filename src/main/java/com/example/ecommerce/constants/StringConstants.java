@@ -24,4 +24,7 @@ public class StringConstants {
   public static final String CONTEXT_PRODUCTS = "/products";
   public static final String CONTEXT_USERS = "/users";
 
+  //roles
+  public static final String EMPLOYEE = "employee";
+  public static final String ADMIN = "admin";
 }
