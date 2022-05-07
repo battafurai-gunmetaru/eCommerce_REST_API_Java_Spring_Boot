@@ -78,9 +78,9 @@ public class DataLoader implements CommandLineRunner {
   Set<Item> itemListFour = Sets.newHashSet();
 
   private Item item = new Item(1L, 23, order); // todo define items up here for repository!!!!
-  private Item itemTwo = new Item();
-  private Item itemThree = new Item();
-  private Item itemFour = new Item();
+  private Item itemTwo = new Item(2L, 13, orderTwo);
+  private Item itemThree = new Item(3L, 5, orderThree);
+  private Item itemFour = new Item(4L, 8, orderFour);
 
   private Address addressOne = new Address("64 Zoo Lane", "Paris", "TX", "23592");
   private Address addressTwo = new Address("1125 Main Street", "Elwood city", "MA", "02532");
@@ -109,6 +109,7 @@ public class DataLoader implements CommandLineRunner {
     return createdDate;
   }
 
+  //todo save all and randomization?
   private void loadGreetings() {
     greeting = greetingRepository.save(new Greeting("hello"));
     greetingTwo = greetingRepository.save(new Greeting("hi"));
@@ -128,44 +129,59 @@ public class DataLoader implements CommandLineRunner {
 
   private void loadItems() {
     itemRepository.save(item);
-    itemTwo = itemRepository.save(new Item(2L, 13, orderTwo));
-    itemThree = itemRepository.save(new Item(3L, 5, orderThree));
-    itemFour = itemRepository.save(new Item(4L, 8, orderFour));
+    itemTwo = itemRepository.save(itemTwo);
+    itemThree = itemRepository.save(itemThree);
+    itemFour = itemRepository.save(itemFour);
   }
 
   private void loadOrders() {
-    itemList = Sets.newHashSet(item); // todo define itemlist down here and remove definitions above
-//    Set<Item> itemListTwo = Sets.newHashSet(itemTwo);
-//    Set<Item> itemListThree = Sets.newHashSet(itemThree);
-//    Set<Item> itemListFour = Sets.newHashSet(itemFour);
+    itemList = Sets.newHashSet(item);
+    itemListTwo = Sets.newHashSet(itemTwo);
+    itemListThree = Sets.newHashSet(itemThree);
+    itemListFour = Sets.newHashSet(itemFour);
 
     order = new Order(1L, createDate("04-22-2022"), itemList, new BigDecimal("23.99"));
+    orderTwo = new Order(2L, createDate("06-12-2021"), Collections.emptySet(),
+        new BigDecimal("23.99"));
+    orderThree = new Order(3L, createDate("12-09-2020"), Collections.emptySet(),
+        new BigDecimal("23.99"));
+    orderFour = new Order(4L, createDate("05-01-2022"), Collections.emptySet(),
+        new BigDecimal("23.99"));
     orderRepository.save(order);
-
-//    orderTwo = orderRepository.save(
-//        new Order(2L, createDate("06-12-2021"), Collections.emptySet(), new BigDecimal("23.99")));
-//    orderThree = orderRepository.save(
-//        new Order(3L, createDate("12-09-2020"), Collections.emptySet(), new BigDecimal("23.99")));
-//    orderFour = orderRepository.save(
-//        new Order(4L, createDate("05-01-2022"), Collections.emptySet(), new BigDecimal("23.99")));
+    orderRepository.save(orderTwo);
+    orderRepository.save(orderThree);
+    orderRepository.save(orderFour);
   }
 
   private void loadProducts() { // maybe this should go before items???
     product = productRepository.save(new Product("MD5-354", "Women's Fashion", "Wide Brim Sunhat",
         "UPF 50+ Sun Hat to protect against UV rays", "Keeper's", new BigDecimal("15.95")));
-    productTwo = productRepository.save(new Product("VG8-771", "Video Game Consoles And Accessories", "Deep, Dark Sea",
-        "Explore 8 levels of fun in this thrilling deep sea adventure!", "Tinker Entertainment", new BigDecimal("49.99")));
-    productThree = productRepository.save(new Product("CS4-956", "Kitchen Cookware", "Hydro-dynamic Spatula",
-        "Comes with port and starboard attachments, and turbo-drive setting", "Barg N' Mart", new BigDecimal("2.79")));
-    productFour = productRepository.save(new Product("MD5-354", "Women's Fashion", "Wide Brim Sunhat",
-        "UPF 50+ Sun Hat to protect against UV rays", "Keeper's", new BigDecimal("15.95")));
+    productTwo = productRepository.save(
+        new Product("VG8-771", "Video Game Consoles And Accessories", "Deep, Dark Sea",
+            "Explore 8 levels of fun in this thrilling deep sea adventure!", "Tinker Entertainment",
+            new BigDecimal("49.99")));
+    productThree = productRepository.save(
+        new Product("CS4-956", "Kitchen Cookware", "Hydro-dynamic Spatula",
+            "Comes with port and starboard attachments, and turbo-drive setting", "Barg N' Mart",
+            new BigDecimal("2.79")));
+    productFour = productRepository.save(
+        new Product("MD5-354", "Women's Fashion", "Wide Brim Sunhat",
+            "UPF 50+ Sun Hat to protect against UV rays", "Keeper's", new BigDecimal("15.95")));
   }
 
-  private void loadUsers() { // todo look into constraint violation 
-    user = userRepository.save(new User("Claire Redfield", "employee", new String[] {EMPLOYEE}, "", "password12345"));
-    userTwo = userRepository.save(new User("Colby Jack", "employee", new String[] {EMPLOYEE}, "", "pastrami25"));
-    userThree = userRepository.save(new User("Duragin Fohrs", "Systems Administrator", new String[] {ADMIN}, "", "theseventhseal1"));
-    userFour = userRepository.save(new User("Michael Scott", "Boss", new String[] {ADMIN}, "", "supersecretpassword1!"));
+  private void loadUsers() { // todo look into constraint violation
+    user = userRepository.save(
+        new User("Claire Redfield", "employee", new String[]{EMPLOYEE}, "credfield@ecommerce.com",
+            "password12345"));
+    userTwo = userRepository.save(
+        new User("Colby Jack", "employee", new String[]{EMPLOYEE}, "cheesewizard@ecommerce.com",
+            "pastrami25"));
+    userThree = userRepository.save(
+        new User("Duragin Fohrs", "Systems Administrator", new String[]{ADMIN},
+            "dfohrs@ecommerce.com", "theseventhseal1"));
+    userFour = userRepository.save(
+        new User("Michael Scott", "Boss", new String[]{ADMIN}, "mscott@ecommerce.com",
+            "supersecretpassword1!"));
   }
 
 

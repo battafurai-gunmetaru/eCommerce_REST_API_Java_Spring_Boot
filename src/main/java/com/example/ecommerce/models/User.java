@@ -25,23 +25,22 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "name" + REQUIRED_FIELD)
+  @NotBlank(message = "name " + REQUIRED_FIELD)
   @Column(name = "user_name")
   private String name;
 
-  @NotBlank(message = "title" + REQUIRED_FIELD)
+  @NotBlank(message = "title " + REQUIRED_FIELD)
   private String title;
 
-  @NotNull(message = "roles" + REQUIRED_FIELD)
-  //custom validator
+  @NotNull(message = "roles " + REQUIRED_FIELD)
   private String[] roles;
 
-  @NotBlank(message = "email" + REQUIRED_FIELD)
+  @NotBlank(message = "email " + REQUIRED_FIELD)
   @Email
   @Column(unique = true)
   private String email;
 
-  @NotBlank(message = "password" + REQUIRED_FIELD)
+  @NotBlank(message = "password " + REQUIRED_FIELD)
   @Length(min = 8, message = BAD_DATA + "password must be at least 8 characters in length")
   private String password;
 

@@ -14,7 +14,6 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import org.checkerframework.checker.units.qual.C;
 
 @Entity
 @Table(name = "customers")
