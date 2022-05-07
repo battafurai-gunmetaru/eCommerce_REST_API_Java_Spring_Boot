@@ -19,6 +19,7 @@ import com.example.ecommerce.repositories.UserRepository;
 import com.google.common.collect.Sets;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
 import org.slf4j.Logger;
@@ -71,7 +72,12 @@ public class DataLoader implements CommandLineRunner {
   private User userThree;
   private User userFour;
 
-  private Item item = new Item();
+  Set<Item> itemList;
+  Set<Item> itemListTwo = Sets.newHashSet();
+  Set<Item> itemListThree = Sets.newHashSet();
+  Set<Item> itemListFour = Sets.newHashSet();
+
+  private Item item = new Item(1L, 23, order); // todo define items up here for repository!!!!
   private Item itemTwo = new Item();
   private Item itemThree = new Item();
   private Item itemFour = new Item();
@@ -85,8 +91,8 @@ public class DataLoader implements CommandLineRunner {
   public void run(String... args) throws Exception {
     loadGreetings();
     loadCustomers();
-    loadItems();
     loadOrders();
+    loadItems();
     loadProducts();
     loadUsers();
   }
@@ -121,26 +127,27 @@ public class DataLoader implements CommandLineRunner {
   }
 
   private void loadItems() {
-    item = itemRepository.save(new Item(1L, 23, order));
+    itemRepository.save(item);
     itemTwo = itemRepository.save(new Item(2L, 13, orderTwo));
     itemThree = itemRepository.save(new Item(3L, 5, orderThree));
     itemFour = itemRepository.save(new Item(4L, 8, orderFour));
   }
 
   private void loadOrders() {
-    Set<Item> itemList = Sets.newHashSet(item);
-    Set<Item> itemListTwo = Sets.newHashSet(itemTwo);
-    Set<Item> itemListThree = Sets.newHashSet(itemThree);
-    Set<Item> itemListFour = Sets.newHashSet(itemFour);
+    itemList = Sets.newHashSet(item); // todo define itemlist down here and remove definitions above
+//    Set<Item> itemListTwo = Sets.newHashSet(itemTwo);
+//    Set<Item> itemListThree = Sets.newHashSet(itemThree);
+//    Set<Item> itemListFour = Sets.newHashSet(itemFour);
 
-    order = orderRepository.save( // change up these orders a bit
-        new Order(1L, createDate("04-22-2022"), itemList, new BigDecimal("23.99")));
-    orderTwo = orderRepository.save(
-        new Order(2L, createDate("06-12-2021"), itemListTwo, new BigDecimal("23.99")));
-    orderThree = orderRepository.save(
-        new Order(3L, createDate("12-09-2020"), itemListThree, new BigDecimal("23.99")));
-    orderFour = orderRepository.save(
-        new Order(4L, createDate("05-01-2022"), itemListFour, new BigDecimal("23.99")));
+    order = new Order(1L, createDate("04-22-2022"), itemList, new BigDecimal("23.99"));
+    orderRepository.save(order);
+
+//    orderTwo = orderRepository.save(
+//        new Order(2L, createDate("06-12-2021"), Collections.emptySet(), new BigDecimal("23.99")));
+//    orderThree = orderRepository.save(
+//        new Order(3L, createDate("12-09-2020"), Collections.emptySet(), new BigDecimal("23.99")));
+//    orderFour = orderRepository.save(
+//        new Order(4L, createDate("05-01-2022"), Collections.emptySet(), new BigDecimal("23.99")));
   }
 
   private void loadProducts() { // maybe this should go before items???
@@ -154,7 +161,7 @@ public class DataLoader implements CommandLineRunner {
         "UPF 50+ Sun Hat to protect against UV rays", "Keeper's", new BigDecimal("15.95")));
   }
 
-  private void loadUsers() {
+  private void loadUsers() { // todo look into constraint violation 
     user = userRepository.save(new User("Claire Redfield", "employee", new String[] {EMPLOYEE}, "", "password12345"));
     userTwo = userRepository.save(new User("Colby Jack", "employee", new String[] {EMPLOYEE}, "", "pastrami25"));
     userThree = userRepository.save(new User("Duragin Fohrs", "Systems Administrator", new String[] {ADMIN}, "", "theseventhseal1"));

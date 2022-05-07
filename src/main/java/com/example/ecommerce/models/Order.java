@@ -41,7 +41,6 @@ public class Order {
   private Date date;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-  @Valid
   private Set<Item> items = new HashSet<>();
 
   @NotNull(message = "order total" + REQUIRED_FIELD)
