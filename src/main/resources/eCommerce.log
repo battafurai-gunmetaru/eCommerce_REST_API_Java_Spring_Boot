@@ -283,3 +283,80 @@ java.lang.NullPointerException: Cannot invoke "com.example.ecommerce.models.User
 2022-05-09 15:23:43.190  INFO 4702 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-05-09 15:23:43.192  INFO 4702 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2022-05-09 15:23:43.198  INFO 4702 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-05-09 18:42:56.778  INFO 8287 --- [main] c.e.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 18.0.1 on brandyn-HP-Desktop-M01-F0xxx with PID 8287 (/home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API/target/classes started by brandyn in /home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API)
+2022-05-09 18:42:56.781  INFO 8287 --- [main] c.e.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-05-09 18:42:58.298  INFO 8287 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-09 18:42:58.358  INFO 8287 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 6 JPA repository interfaces.
+2022-05-09 18:42:58.951  INFO 8287 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-05-09 18:42:58.960  INFO 8287 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-05-09 18:42:58.960  INFO 8287 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-05-09 18:42:59.055  INFO 8287 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-05-09 18:42:59.056  INFO 8287 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2198 ms
+2022-05-09 18:42:59.206  INFO 8287 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-09 18:42:59.238  INFO 8287 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-05-09 18:42:59.387  INFO 8287 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-09 18:42:59.468  INFO 8287 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-05-09 18:42:59.751  INFO 8287 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-05-09 18:42:59.773  INFO 8287 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-05-09 18:43:12.736  INFO 8287 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-09 18:43:12.746  INFO 8287 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-09 18:43:13.452  WARN 8287 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-09 18:43:13.571  INFO 8287 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-09 18:43:13.835  INFO 8287 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-09 18:43:13.837  INFO 8287 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-05-09 18:43:13.854  INFO 8287 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-05-09 18:43:13.894  INFO 8287 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-05-09 18:43:14.108  INFO 8287 --- [main] c.e.ecommerce.EcommerceApplication       : Started EcommerceApplication in 17.818 seconds (JVM running for 18.268)
+2022-05-09 18:45:34.564  INFO 8287 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-09 18:45:34.564  INFO 8287 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-05-09 18:45:34.565  INFO 8287 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-05-09 18:45:34.602  INFO 8287 --- [http-nio-8080-exec-2] c.e.e.controllers.UserController         : Mon May 09 18:45:34 EDT 2022Query request received for User{id=null, name='Lucy Vrombaut', title='null', roles=null, email='lvrombaut@gmail.com', password='null'}
+2022-05-09 18:46:10.393  INFO 8287 --- [http-nio-8080-exec-3] c.e.e.controllers.UserController         : Mon May 09 18:46:10 EDT 2022Query request received for User{id=null, name='Lucy Vrombaut', title='null', roles=null, email='lvrombaut@hotmail.com', password='null'}
+2022-05-09 18:46:11.608  INFO 8287 --- [http-nio-8080-exec-4] c.e.e.controllers.UserController         : Mon May 09 18:46:11 EDT 2022Query request received for User{id=null, name='Lucy Vrombaut', title='null', roles=null, email='lvrombaut@hotmail.com', password='null'}
+2022-05-09 18:46:27.761  INFO 8287 --- [http-nio-8080-exec-5] c.e.e.controllers.CustomerController     : Mon May 09 18:46:27 EDT 2022Query request received for Customer{id=null, name='Lucy Vrombaut', email='lvrombaut@hotmail.com', address=null}
+2022-05-09 18:46:39.109  INFO 8287 --- [http-nio-8080-exec-6] c.e.e.controllers.CustomerController     : Mon May 09 18:46:39 EDT 2022Query request received for Customer{id=null, name='Lucy Vrombaut', email='lvrombaut@hotmail.com', address=null}
+2022-05-09 18:49:19.485  INFO 8287 --- [http-nio-8080-exec-9] c.e.e.controllers.CustomerController     : Mon May 09 18:49:19 EDT 2022Query request received for customer with id 1
+2022-05-09 18:49:29.531  INFO 8287 --- [http-nio-8080-exec-10] c.e.e.controllers.CustomerController     : Mon May 09 18:49:29 EDT 2022Query request received for customer with id 999
+2022-05-09 18:49:38.679  INFO 8287 --- [http-nio-8080-exec-1] c.e.e.controllers.CustomerController     : Mon May 09 18:49:38 EDT 2022Query request received for customer with id -9
+2022-05-09 18:52:18.124  INFO 8287 --- [http-nio-8080-exec-3] c.e.e.controllers.CustomerController     : Mon May 09 18:52:18 EDT 2022Query request received for customer with id -9
+2022-05-09 19:01:18.874  INFO 8287 --- [http-nio-8080-exec-5] c.e.e.controllers.CustomerController     : Mon May 09 19:01:18 EDT 2022Post request received for customer
+2022-05-09 19:01:44.919  INFO 8287 --- [http-nio-8080-exec-6] c.e.e.controllers.CustomerController     : Mon May 09 19:01:44 EDT 2022Post request received for customer
+2022-05-09 19:01:45.112  WARN 8287 --- [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1062, SQLState: 23000
+2022-05-09 19:01:45.112 ERROR 8287 --- [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : Duplicate entry 'beebopdoowop@charter.net' for key 'customers.UK_rfbvkrffamfql7cjmen8v976v'
+2022-05-09 19:01:45.241 ERROR 8287 --- [http-nio-8080-exec-6] c.e.e.exceptions.ExceptionController     : Duplicate entry 'beebopdoowop@charter.net' for key 'customers.UK_rfbvkrffamfql7cjmen8v976v'
+2022-05-09 19:04:07.809  INFO 8287 --- [http-nio-8080-exec-8] c.e.e.controllers.CustomerController     : Mon May 09 19:04:07 EDT 2022Post request received for customer
+2022-05-09 19:04:07.814  WARN 8287 --- [http-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1062, SQLState: 23000
+2022-05-09 19:04:07.814 ERROR 8287 --- [http-nio-8080-exec-8] o.h.engine.jdbc.spi.SqlExceptionHelper   : Duplicate entry 'beebopdoowop@charter.net' for key 'customers.UK_rfbvkrffamfql7cjmen8v976v'
+2022-05-09 19:04:07.881 ERROR 8287 --- [http-nio-8080-exec-8] c.e.e.exceptions.ExceptionController     : Duplicate entry 'beebopdoowop@charter.net' for key 'customers.UK_rfbvkrffamfql7cjmen8v976v'
+2022-05-09 19:05:44.409  INFO 8287 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-09 19:05:44.531  INFO 8287 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-05-09 19:05:44.546  INFO 8287 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-05-09 19:05:52.913  INFO 9331 --- [main] c.e.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 18.0.1 on brandyn-HP-Desktop-M01-F0xxx with PID 9331 (/home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API/target/classes started by brandyn in /home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API)
+2022-05-09 19:05:52.916  INFO 9331 --- [main] c.e.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-05-09 19:05:54.678  INFO 9331 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-09 19:05:54.755  INFO 9331 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 6 JPA repository interfaces.
+2022-05-09 19:05:55.559  INFO 9331 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-05-09 19:05:55.571  INFO 9331 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-05-09 19:05:55.572  INFO 9331 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-05-09 19:05:55.724  INFO 9331 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-05-09 19:05:55.725  INFO 9331 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2686 ms
+2022-05-09 19:05:55.968  INFO 9331 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-09 19:05:56.034  INFO 9331 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-05-09 19:05:56.290  INFO 9331 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-09 19:05:56.414  INFO 9331 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-05-09 19:05:57.170  INFO 9331 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-05-09 19:05:57.185  INFO 9331 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-05-09 19:06:09.621  INFO 9331 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-09 19:06:09.631  INFO 9331 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-09 19:06:10.692  WARN 9331 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-09 19:06:10.926  INFO 9331 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-09 19:06:11.265  INFO 9331 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-09 19:06:11.266  INFO 9331 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-05-09 19:06:11.277  INFO 9331 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-05-09 19:06:11.308  INFO 9331 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-05-09 19:06:11.521  INFO 9331 --- [main] c.e.ecommerce.EcommerceApplication       : Started EcommerceApplication in 19.791 seconds (JVM running for 21.082)
+2022-05-09 19:07:35.482  INFO 9331 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-09 19:07:35.482  INFO 9331 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-05-09 19:07:35.484  INFO 9331 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2022-05-09 19:07:35.597  INFO 9331 --- [http-nio-8080-exec-1] c.e.e.controllers.CustomerController     : Mon May 09 19:07:35 EDT 2022Post request received for customer
+2022-05-09 19:07:40.477  INFO 9331 --- [http-nio-8080-exec-3] c.e.e.controllers.CustomerController     : Mon May 09 19:07:40 EDT 2022Post request received for customer

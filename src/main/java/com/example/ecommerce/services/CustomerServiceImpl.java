@@ -3,6 +3,7 @@ package com.example.ecommerce.services;
 import static com.example.ecommerce.constants.StringConstants.NOT_FOUND;
 
 import com.example.ecommerce.exceptions.BadDataResponse;
+import com.example.ecommerce.exceptions.Conflict;
 import com.example.ecommerce.exceptions.ResourceNotFound;
 import com.example.ecommerce.exceptions.ServiceUnavailable;
 import com.example.ecommerce.models.Customer;
@@ -62,6 +63,10 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Override
   public Customer addCustomer(Customer customer) {
+    boolean emailAlreadyExists = customerRepository.existsByEmail(customer.getEmail());
+    if (emailAlreadyExists) {
+      throw new Conflict(" Email already in use!");
+    }
     try {
       return customerRepository.save(customer);
     } catch (Exception e) {
@@ -77,6 +82,10 @@ public class CustomerServiceImpl implements CustomerService {
     Customer updatedCustomer = null;
     if (!customerRepository.existsById(id)) {
       throw new ResourceNotFound(NOT_FOUND + "customer with id " + id);
+    }
+    boolean emailAlreadyExists = customerRepository.existsByEmail(customer.getEmail());
+    if (emailAlreadyExists) {
+      throw new Conflict(" Email already in use!");
     }
     try {
       customer.setId(id);
