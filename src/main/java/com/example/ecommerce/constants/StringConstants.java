@@ -17,6 +17,8 @@ public class StringConstants {
   public static final String SERVER_ERROR = "Server error";
   public static final String UNEXPECTED_ERROR = "Unexpected server error";
 
+  public static final String CONFLICT = "Conflict";
+
   //endpoint constants
   public static final String CONTEXT_GREETINGS = "/greetings";
   public static final String CONTEXT_CUSTOMERS = "/customers";
