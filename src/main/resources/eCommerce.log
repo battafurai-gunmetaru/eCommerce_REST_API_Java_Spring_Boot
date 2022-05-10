@@ -5735,3 +5735,86 @@ java.lang.StackOverflowError: null
 2022-05-10 14:15:08.427  INFO 8530 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2022-05-10 14:15:08.428  INFO 8530 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2022-05-10 14:15:08.462  INFO 8530 --- [http-nio-8080-exec-1] c.e.e.controllers.OrderController        : Tue May 10 14:15:08 EDT 2022Query request received for Order{id=null, customerId=null, date=null, items=[], orderTotal=null}
+2022-05-10 14:30:14.112  INFO 8530 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-10 14:30:14.141  INFO 8530 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-05-10 14:30:14.151  INFO 8530 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-05-10 14:30:17.968  INFO 8907 --- [main] c.e.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 18.0.1 on brandyn-HP-Desktop-M01-F0xxx with PID 8907 (/home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API/target/classes started by brandyn in /home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API)
+2022-05-10 14:30:17.972  INFO 8907 --- [main] c.e.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-05-10 14:30:19.044  INFO 8907 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-10 14:30:19.111  INFO 8907 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 6 JPA repository interfaces.
+2022-05-10 14:30:19.788  INFO 8907 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-05-10 14:30:19.800  INFO 8907 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-05-10 14:30:19.800  INFO 8907 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-05-10 14:30:19.926  INFO 8907 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-05-10 14:30:19.927  INFO 8907 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1908 ms
+2022-05-10 14:30:20.113  INFO 8907 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-10 14:30:20.153  INFO 8907 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-05-10 14:30:20.297  INFO 8907 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-10 14:30:20.400  INFO 8907 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-05-10 14:30:20.708  INFO 8907 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-05-10 14:30:20.717  INFO 8907 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-05-10 14:30:33.418  INFO 8907 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-10 14:30:33.427  INFO 8907 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-10 14:30:34.066  WARN 8907 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-10 14:30:34.187  INFO 8907 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-10 14:30:34.426  INFO 8907 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-10 14:30:34.427  INFO 8907 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-05-10 14:30:34.437  INFO 8907 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-05-10 14:30:34.472  INFO 8907 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-05-10 14:30:34.674  INFO 8907 --- [main] c.e.ecommerce.EcommerceApplication       : Started EcommerceApplication in 17.199 seconds (JVM running for 17.587)
+2022-05-10 14:30:41.083  INFO 8907 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-10 14:30:41.083  INFO 8907 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-05-10 14:30:41.084  INFO 8907 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-05-10 14:30:41.122  INFO 8907 --- [http-nio-8080-exec-2] c.e.e.controllers.OrderController        : Tue May 10 14:30:41 EDT 2022Query request received for Order{id=null, customerId=null, date=null, items=[], orderTotal=null}
+2022-05-10 14:31:26.241  INFO 8907 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-10 14:31:26.243  INFO 8907 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-05-10 14:31:26.250  INFO 8907 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-05-10 14:31:30.246  INFO 9030 --- [main] c.e.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 18.0.1 on brandyn-HP-Desktop-M01-F0xxx with PID 9030 (/home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API/target/classes started by brandyn in /home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API)
+2022-05-10 14:31:30.252  INFO 9030 --- [main] c.e.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-05-10 14:31:31.396  INFO 9030 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-10 14:31:31.471  INFO 9030 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65 ms. Found 6 JPA repository interfaces.
+2022-05-10 14:31:32.295  INFO 9030 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-05-10 14:31:32.308  INFO 9030 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-05-10 14:31:32.309  INFO 9030 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-05-10 14:31:32.526  INFO 9030 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-05-10 14:31:32.528  INFO 9030 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2197 ms
+2022-05-10 14:31:32.747  INFO 9030 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-10 14:31:32.784  INFO 9030 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-05-10 14:31:32.921  INFO 9030 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-10 14:31:33.035  INFO 9030 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-05-10 14:31:33.303  INFO 9030 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-05-10 14:31:33.316  INFO 9030 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-05-10 14:31:46.694  INFO 9030 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-10 14:31:46.706  INFO 9030 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-10 14:31:47.321  WARN 9030 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-10 14:31:47.446  INFO 9030 --- [main] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-10 14:31:47.705  INFO 9030 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-10 14:31:47.707  INFO 9030 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2022-05-10 14:31:47.718  INFO 9030 --- [main] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2022-05-10 14:31:47.748  INFO 9030 --- [main] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2022-05-10 14:31:47.937  INFO 9030 --- [main] c.e.ecommerce.EcommerceApplication       : Started EcommerceApplication in 18.338 seconds (JVM running for 18.788)
+2022-05-10 14:34:10.169  INFO 9030 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-10 14:34:10.170  INFO 9030 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-05-10 14:34:10.171  INFO 9030 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-05-10 14:34:10.213  INFO 9030 --- [http-nio-8080-exec-2] c.e.e.controllers.ProductController      : Tue May 10 14:34:10 EDT 2022Query request received for Product{id=null, sku='null', type='null', name='null', description='null', manufacturer='null', price=null}
+2022-05-10 14:34:25.136  INFO 9030 --- [http-nio-8080-exec-3] c.e.e.controllers.OrderController        : Tue May 10 14:34:25 EDT 2022Query request received for Order{id=null, customerId=1, date=Fri Apr 22 00:00:00 EDT 2022, items=[], orderTotal=23.99}
+2022-05-10 14:34:30.123  INFO 9030 --- [http-nio-8080-exec-4] c.e.e.controllers.OrderController        : Tue May 10 14:34:30 EDT 2022Query request received for Order{id=null, customerId=1, date=Fri Apr 22 00:00:00 EDT 2022, items=[], orderTotal=23.99}
+2022-05-10 14:34:34.049  INFO 9030 --- [http-nio-8080-exec-5] c.e.e.controllers.OrderController        : Tue May 10 14:34:34 EDT 2022Query request received for Order{id=null, customerId=1, date=Fri Apr 22 00:00:00 EDT 2022, items=[], orderTotal=23.99}
+2022-05-10 14:34:38.807  INFO 9030 --- [http-nio-8080-exec-6] c.e.e.controllers.OrderController        : Tue May 10 14:34:38 EDT 2022Query request received for Order{id=null, customerId=null, date=null, items=[], orderTotal=null}
+2022-05-10 14:34:49.739  INFO 9030 --- [http-nio-8080-exec-7] c.e.e.controllers.OrderController        : Tue May 10 14:34:49 EDT 2022Query request received for Order{id=null, customerId=null, date=null, items=[], orderTotal=null}
+2022-05-10 14:35:00.156  INFO 9030 --- [http-nio-8080-exec-8] c.e.e.controllers.OrderController        : Tue May 10 14:35:00 EDT 2022Query request received for Order{id=null, customerId=null, date=null, items=[], orderTotal=23.99}
+2022-05-10 14:35:04.071  INFO 9030 --- [http-nio-8080-exec-9] c.e.e.controllers.OrderController        : Tue May 10 14:35:04 EDT 2022Query request received for Order{id=null, customerId=null, date=Fri Apr 22 00:00:00 EDT 2022, items=[], orderTotal=null}
+2022-05-10 14:35:09.588  INFO 9030 --- [http-nio-8080-exec-10] c.e.e.controllers.OrderController        : Tue May 10 14:35:09 EDT 2022Query request received for Order{id=null, customerId=1, date=null, items=[], orderTotal=null}
+2022-05-10 14:35:17.142  INFO 9030 --- [http-nio-8080-exec-1] c.e.e.controllers.OrderController        : Tue May 10 14:35:17 EDT 2022Query request received for Order{id=null, customerId=null, date=null, items=[], orderTotal=null}
+2022-05-10 14:43:34.077  INFO 9030 --- [http-nio-8080-exec-4] c.e.e.controllers.OrderController        : Tue May 10 14:43:34 EDT 2022Query request received for Order{id=null, customerId=1, date=Fri Apr 22 00:00:00 EDT 2022, items=[], orderTotal=23.99}
+2022-05-10 14:43:38.914  INFO 9030 --- [http-nio-8080-exec-5] c.e.e.controllers.OrderController        : Tue May 10 14:43:38 EDT 2022Query request received for order with id 1
+2022-05-10 14:43:45.038  INFO 9030 --- [http-nio-8080-exec-6] c.e.e.controllers.ProductController      : Tue May 10 14:43:45 EDT 2022Query request received for product with id 999
+2022-05-10 14:43:54.259  INFO 9030 --- [http-nio-8080-exec-7] c.e.e.controllers.OrderController        : Tue May 10 14:43:54 EDT 2022Query request received for order with id 999
+2022-05-10 14:44:02.389  INFO 9030 --- [http-nio-8080-exec-8] c.e.e.controllers.OrderController        : Tue May 10 14:44:02 EDT 2022Query request received for order with id -9
+2022-05-10 14:44:59.342  INFO 9030 --- [http-nio-8080-exec-10] c.e.e.controllers.OrderController        : Tue May 10 14:44:59 EDT 2022Post request received for order
+2022-05-10 14:46:51.872  INFO 9030 --- [http-nio-8080-exec-5] c.e.e.controllers.OrderController        : Tue May 10 14:46:51 EDT 2022Put request received for order with id 1
+2022-05-10 14:47:57.274  INFO 9030 --- [http-nio-8080-exec-3] c.e.e.controllers.OrderController        : Tue May 10 14:47:57 EDT 2022Put request received for order with id 999
+2022-05-10 14:48:11.843  INFO 9030 --- [http-nio-8080-exec-4] c.e.e.controllers.OrderController        : Tue May 10 14:48:11 EDT 2022Put request received for order with id -9
+2022-05-10 14:53:51.819  INFO 9030 --- [http-nio-8080-exec-6] c.e.e.controllers.OrderController        : Tue May 10 14:53:51 EDT 2022Delete request received for order with id 2
+2022-05-10 14:54:00.150  INFO 9030 --- [http-nio-8080-exec-7] c.e.e.controllers.OrderController        : Tue May 10 14:54:00 EDT 2022Delete request received for order with id 999
+2022-05-10 14:54:09.379  INFO 9030 --- [http-nio-8080-exec-8] c.e.e.controllers.OrderController        : Tue May 10 14:54:09 EDT 2022Delete request received for order with id -1

@@ -40,7 +40,7 @@ public class Order {
 
   @NotNull(message = "Date " + REQUIRED_FIELD)
   @JsonFormat(pattern = "yyyy-MM-dd", lenient = OptBoolean.FALSE) // why is this here?
-  @DateTimeFormat(pattern = "yyyy-MM-dd") // does this do anything?
+  @DateTimeFormat(pattern = "yyyy-MM-dd") // does this do anything? todo validation
   private Date date;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
 //  private OrderService orderService;
 
   @Override
-  public List<Order> queryOrders(Order order) {
+  public List<Order> queryOrders(Order order) { //todo customize queries for item info
     try {
       if (order.isEmpty()) {
         List<Order> orders = orderRepository.findAll();

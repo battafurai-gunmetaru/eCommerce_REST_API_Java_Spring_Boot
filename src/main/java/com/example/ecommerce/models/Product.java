@@ -22,7 +22,7 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "sku " + REQUIRED_FIELD)
+  @NotBlank(message = "sku " + REQUIRED_FIELD) //todo validation
   private String sku;
 
   @NotBlank(message = "type " + REQUIRED_FIELD)

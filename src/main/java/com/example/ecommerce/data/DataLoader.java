@@ -71,7 +71,7 @@ public class DataLoader implements CommandLineRunner {
   private User userFour;
 
   private Item item = new Item(1L, 23,
-      order); // todo find out why many to one isn't loading on orders!!
+      order);
   private Item itemTwo = new Item(2L, 13, orderTwo);
   private Item itemThree = new Item(3L, 5, orderThree);
   private Item itemFour = new Item(4L, 8, orderFour);
@@ -129,18 +129,18 @@ public class DataLoader implements CommandLineRunner {
   }
 
   private void loadOrders() {
-    order = new Order(1L, createDate("04-22-2022"), new ArrayList<>(), new BigDecimal("23.99"));
+    order = new Order(1L, createDate("2022-04-22"), new ArrayList<>(), new BigDecimal("23.99"));
     order.addItemToOrder(item);
 
-    orderTwo = new Order(2L, createDate("06-12-2021"), new ArrayList<>(),
+    orderTwo = new Order(2L, createDate("2021-06-12"), new ArrayList<>(),
         new BigDecimal("23.99"));
     orderTwo.addItemToOrder(itemTwo);
 
-    orderThree = new Order(3L, createDate("12-09-2020"), new ArrayList<>(),
+    orderThree = new Order(3L, createDate("2020-12-09"), new ArrayList<>(),
         new BigDecimal("23.99"));
     orderThree.addItemToOrder(itemThree);
 
-    orderFour = new Order(4L, createDate("05-01-2022"), new ArrayList<>(),
+    orderFour = new Order(4L, createDate("2022-05-01"), new ArrayList<>(),
         new BigDecimal("23.99"));
     orderFour.addItemToOrder(itemFour);
 
@@ -150,7 +150,7 @@ public class DataLoader implements CommandLineRunner {
     orderRepository.save(orderFour);
   }
 
-  private void loadProducts() { // maybe this should go before items???
+  private void loadProducts() {
     product = productRepository.save(new Product("MD5-354", "Women's Fashion", "Wide Brim Sunhat",
         "UPF 50+ Sun Hat to protect against UV rays", "Keeper's", new BigDecimal("15.95")));
     productTwo = productRepository.save(
@@ -167,7 +167,7 @@ public class DataLoader implements CommandLineRunner {
             new BigDecimal("24.95")));
   }
 
-  private void loadUsers() { // todo look into constraint violation
+  private void loadUsers() {
     user = userRepository.save(
         new User("Claire Redfield", "employee", new String[]{EMPLOYEE}, "credfield@ecommerce.com",
             "password12345"));

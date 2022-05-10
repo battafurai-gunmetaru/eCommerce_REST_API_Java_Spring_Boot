@@ -99,7 +99,7 @@ optimize the imports of subdirectories, as well.
 
 ### Helpful Links
 
-Postman Collection Link: <https://www.getpostman.com/collections/1775079e9ef4890df39d>
+Postman Collection Link: <https://www.getpostman.com/collections/de4186a0431ccfa7aaaa>
 
 Swagger UI Link: <http://localhost:8080/swagger-ui.html>
 
