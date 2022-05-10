@@ -165,8 +165,8 @@ public class DataLoader implements CommandLineRunner {
             "Comes with port and starboard attachments, and turbo-drive setting", "Barg N' Mart",
             new BigDecimal("2.79")));
     productFour = productRepository.save(
-        new Product("MD5-354", "Women's Fashion", "Wide Brim Sunhat",
-            "UPF 50+ Sun Hat to protect against UV rays", "Keeper's", new BigDecimal("15.95")));
+        new Product("FP-857", "Grocery", "Chester O's",
+            "A great part of any winner's complete breakfast!", "Chester Cereals INC", new BigDecimal("24.95")));
   }
 
   private void loadUsers() { // todo look into constraint violation

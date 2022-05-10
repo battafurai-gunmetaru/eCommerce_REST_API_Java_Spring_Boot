@@ -3,6 +3,7 @@ package com.example.ecommerce.services;
 import static com.example.ecommerce.constants.StringConstants.NOT_FOUND;
 
 import com.example.ecommerce.exceptions.BadDataResponse;
+import com.example.ecommerce.exceptions.Conflict;
 import com.example.ecommerce.exceptions.ResourceNotFound;
 import com.example.ecommerce.exceptions.ServiceUnavailable;
 import com.example.ecommerce.models.Product;
@@ -62,6 +63,10 @@ public class ProductServiceImpl implements ProductService {
 
   @Override
   public Product addProduct(Product product) {
+    boolean productWithMatchingSku = productRepository.existsBySku(product.getSku());
+    if(productWithMatchingSku){
+      throw new Conflict("SKU is already in use by another product!");
+    }
     try {
       return productRepository.save(product);
     } catch (Exception e) {
@@ -73,6 +78,10 @@ public class ProductServiceImpl implements ProductService {
   public Product updateProductById(Long id, Product product) {
     if (id < 1) {
       throw new BadDataResponse("id must be positive and cannot be zero");
+    }
+    boolean productWithMatchingSku = productRepository.existsBySku(product.getSku());
+    if(productWithMatchingSku){
+      throw new Conflict("SKU is already in use by another product!");
     }
     Product updatedProduct = null;
     if (!productRepository.existsById(id)) {

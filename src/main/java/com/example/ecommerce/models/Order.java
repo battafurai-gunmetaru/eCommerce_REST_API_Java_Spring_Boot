@@ -34,7 +34,7 @@ public class Order {
   @Valid
   private Long customerId;
 
-  @NotNull(message = "Date" + REQUIRED_FIELD)
+  @NotNull(message = "Date " + REQUIRED_FIELD)
   @JsonFormat(pattern = "yyyy-MM-dd", lenient = OptBoolean.FALSE) // why is this here?
   @DateTimeFormat(pattern = "yyyy-MM-dd") // does this do anything?
   private Date date;
@@ -42,7 +42,7 @@ public class Order {
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
   private Set<Item> items = new HashSet<>();
 
-  @NotNull(message = "order total" + REQUIRED_FIELD)
+  @NotNull(message = "order total " + REQUIRED_FIELD)
   @NumberFormat(style = Style.CURRENCY)
   private BigDecimal orderTotal;
 

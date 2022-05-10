@@ -23,11 +23,11 @@ public class Customer {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "name" + REQUIRED_FIELD)
+  @NotBlank(message = "name " + REQUIRED_FIELD)
   @Column(name = "customer_name")
   private String name;
 
-  @NotBlank(message = "email" + REQUIRED_FIELD)
+  @NotBlank(message = "email " + REQUIRED_FIELD)
   @Email // might have to change to regexp
   @Column(unique = true)
   private String email;

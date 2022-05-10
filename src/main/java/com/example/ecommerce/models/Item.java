@@ -26,7 +26,7 @@ public class Item {
   @Valid
   private Long productId;
 
-  @NotNull(message = "quantity" + REQUIRED_FIELD)
+  @NotNull(message = "quantity " + REQUIRED_FIELD)
   @Min(value = 0, message = BAD_DATA + " must be a value greater than or equal to zero")
   private Integer quantity;
 

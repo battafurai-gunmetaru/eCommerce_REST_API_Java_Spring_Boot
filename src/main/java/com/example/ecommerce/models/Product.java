@@ -22,23 +22,23 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "sku" + REQUIRED_FIELD)
+  @NotBlank(message = "sku " + REQUIRED_FIELD)
   private String sku;
 
-  @NotBlank(message = "type" + REQUIRED_FIELD)
+  @NotBlank(message = "type " + REQUIRED_FIELD)
   private String type;
 
-  @NotBlank(message = "name" + REQUIRED_FIELD)
+  @NotBlank(message = "name " + REQUIRED_FIELD)
   @Column(name = "product_name")
   private String name;
 
-  @NotBlank(message = "description" + REQUIRED_FIELD)
+  @NotBlank(message = "description " + REQUIRED_FIELD)
   private String description;
 
-  @NotBlank(message = "manufacturer" + REQUIRED_FIELD)
+  @NotBlank(message = "manufacturer " + REQUIRED_FIELD)
   private String manufacturer;
 
-  @NotNull(message = "price" + REQUIRED_FIELD)
+  @NotNull(message = "price " + REQUIRED_FIELD)
   private BigDecimal price; // might need ot put additional validation for price
 
   public Product() {
