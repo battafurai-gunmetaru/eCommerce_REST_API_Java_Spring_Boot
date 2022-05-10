@@ -77,7 +77,7 @@ public class DataLoader implements CommandLineRunner {
   Set<Item> itemListThree = Sets.newHashSet();
   Set<Item> itemListFour = Sets.newHashSet();
 
-  private Item item = new Item(1L, 23, order); // todo define items up here for repository!!!!
+  private Item item = new Item(1L, 23, order); // todo find out why many to one isn't loading on orders!!
   private Item itemTwo = new Item(2L, 13, orderTwo);
   private Item itemThree = new Item(3L, 5, orderThree);
   private Item itemFour = new Item(4L, 8, orderFour);
