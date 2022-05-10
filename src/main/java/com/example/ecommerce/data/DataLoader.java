@@ -16,12 +16,10 @@ import com.example.ecommerce.repositories.ItemRepository;
 import com.example.ecommerce.repositories.OrderRepository;
 import com.example.ecommerce.repositories.ProductRepository;
 import com.example.ecommerce.repositories.UserRepository;
-import com.google.common.collect.Sets;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,12 +70,8 @@ public class DataLoader implements CommandLineRunner {
   private User userThree;
   private User userFour;
 
-  Set<Item> itemList;
-  Set<Item> itemListTwo = Sets.newHashSet();
-  Set<Item> itemListThree = Sets.newHashSet();
-  Set<Item> itemListFour = Sets.newHashSet();
-
-  private Item item = new Item(1L, 23, order); // todo find out why many to one isn't loading on orders!!
+  private Item item = new Item(1L, 23,
+      order); // todo find out why many to one isn't loading on orders!!
   private Item itemTwo = new Item(2L, 13, orderTwo);
   private Item itemThree = new Item(3L, 5, orderThree);
   private Item itemFour = new Item(4L, 8, orderFour);
@@ -128,25 +122,28 @@ public class DataLoader implements CommandLineRunner {
   }
 
   private void loadItems() {
-    itemRepository.save(item);
+    item = itemRepository.save(item);
     itemTwo = itemRepository.save(itemTwo);
     itemThree = itemRepository.save(itemThree);
     itemFour = itemRepository.save(itemFour);
   }
 
   private void loadOrders() {
-    itemList = Sets.newHashSet(item);
-    itemListTwo = Sets.newHashSet(itemTwo);
-    itemListThree = Sets.newHashSet(itemThree);
-    itemListFour = Sets.newHashSet(itemFour);
+    order = new Order(1L, createDate("04-22-2022"), new ArrayList<>(), new BigDecimal("23.99"));
+    order.addItemToOrder(item);
 
-    order = new Order(1L, createDate("04-22-2022"), itemList, new BigDecimal("23.99"));
-    orderTwo = new Order(2L, createDate("06-12-2021"), Collections.emptySet(),
+    orderTwo = new Order(2L, createDate("06-12-2021"), new ArrayList<>(),
         new BigDecimal("23.99"));
-    orderThree = new Order(3L, createDate("12-09-2020"), Collections.emptySet(),
+    orderTwo.addItemToOrder(itemTwo);
+
+    orderThree = new Order(3L, createDate("12-09-2020"), new ArrayList<>(),
         new BigDecimal("23.99"));
-    orderFour = new Order(4L, createDate("05-01-2022"), Collections.emptySet(),
+    orderThree.addItemToOrder(itemThree);
+
+    orderFour = new Order(4L, createDate("05-01-2022"), new ArrayList<>(),
         new BigDecimal("23.99"));
+    orderFour.addItemToOrder(itemFour);
+
     orderRepository.save(order);
     orderRepository.save(orderTwo);
     orderRepository.save(orderThree);
@@ -166,7 +163,8 @@ public class DataLoader implements CommandLineRunner {
             new BigDecimal("2.79")));
     productFour = productRepository.save(
         new Product("FP-857", "Grocery", "Chester O's",
-            "A great part of any winner's complete breakfast!", "Chester Cereals INC", new BigDecimal("24.95")));
+            "A great part of any winner's complete breakfast!", "Chester Cereals INC",
+            new BigDecimal("24.95")));
   }
 
   private void loadUsers() { // todo look into constraint violation

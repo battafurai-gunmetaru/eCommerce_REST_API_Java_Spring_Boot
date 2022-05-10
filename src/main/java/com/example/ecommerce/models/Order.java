@@ -4,10 +4,13 @@ import static com.example.ecommerce.constants.StringConstants.REQUIRED_FIELD;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.OptBoolean;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -15,6 +18,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.Valid;
@@ -40,7 +44,7 @@ public class Order {
   private Date date;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-  private Set<Item> items = new HashSet<>();
+  private List<Item> items = new ArrayList<>();
 
   @NotNull(message = "order total " + REQUIRED_FIELD)
   @NumberFormat(style = Style.CURRENCY)
@@ -49,11 +53,16 @@ public class Order {
   public Order() {
   }
 
-  public Order(Long customerId, Date date, Set<Item> items, BigDecimal orderTotal) {
+  public Order(Long customerId, Date date, List<Item> items, BigDecimal orderTotal) {
     this.customerId = customerId;
     this.date = date;
     this.items = items;
     this.orderTotal = orderTotal;
+  }
+
+  public void addItemToOrder(Item item) {
+    item.setOrder(this);
+    this.items.add(item);
   }
 
   public Long getId() {
@@ -80,11 +89,11 @@ public class Order {
     this.date = date;
   }
 
-  public Set<Item> getItems() {
+  public List<Item> getItems() {
     return items;
   }
 
-  public void setItems(Set<Item> items) {
+  public void setItems(List<Item> items) {
     this.items = items;
   }
 

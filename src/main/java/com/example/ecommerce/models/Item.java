@@ -3,12 +3,15 @@ package com.example.ecommerce.models;
 import static com.example.ecommerce.constants.StringConstants.BAD_DATA;
 import static com.example.ecommerce.constants.StringConstants.REQUIRED_FIELD;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
@@ -30,7 +33,7 @@ public class Item {
   @Min(value = 0, message = BAD_DATA + " must be a value greater than or equal to zero")
   private Integer quantity;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JsonIgnore
   private Order order;
 
@@ -99,7 +102,7 @@ public class Item {
         && Objects.equals(order, item.order);
   }
 
-  @Override
+  @Override // infinite loop
   public int hashCode() {
     return Objects.hash(id, productId, quantity, order);
   }
