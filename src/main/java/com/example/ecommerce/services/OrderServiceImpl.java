@@ -23,11 +23,8 @@ public class OrderServiceImpl implements OrderService {
   @Autowired
   private OrderRepository orderRepository;
 
-//  @Autowired
-//  private OrderService orderService;
-
   @Override
-  public List<Order> queryOrders(Order order) { //todo customize queries for item info
+  public List<Order> queryOrders(Order order) {
     try {
       if (order.isEmpty()) {
         List<Order> orders = orderRepository.findAll();

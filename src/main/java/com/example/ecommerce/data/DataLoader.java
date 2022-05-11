@@ -91,7 +91,7 @@ public class DataLoader implements CommandLineRunner {
     loadUsers();
   }
 
-  private Date createDate(String dateValue) {
+  public Date createDate(String dateValue) {
     String datePattern = "yyyy-MM-dd";
     SimpleDateFormat dateFor = new SimpleDateFormat(datePattern);
     Date createdDate = null;
