@@ -1,6 +1,7 @@
 package com.example.ecommerce.tests.controllers;
 
-import static com.example.ecommerce.constants.StringConstants.CONTEXT_GREETINGS;
+import static com.example.ecommerce.constants.StringConstants.CONTEXT_ORDERS;
+import static com.example.ecommerce.constants.StringConstants.CONTEXT_ORDERS;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -8,7 +9,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.example.ecommerce.models.Greeting;
+import com.example.ecommerce.models.Order;
+import com.example.ecommerce.models.Order;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Contains the integration tests for the GreetingController.
+ * Contains the integration tests for the OrderController.
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -37,7 +39,7 @@ class OrderControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
-  Greeting greeting;
+  Order order;
 
   ResultMatcher createdStatus = MockMvcResultMatchers.status().isCreated();
   ResultMatcher okStatus = MockMvcResultMatchers.status().isOk();
@@ -46,7 +48,6 @@ class OrderControllerTest {
   ResultMatcher expectedType = MockMvcResultMatchers.content()
       .contentType(MediaType.APPLICATION_JSON);
   ResultMatcher badRequestStatus = MockMvcResultMatchers.status().isBadRequest();
-  ResultMatcher uniqueViolationStatus = MockMvcResultMatchers.status().is5xxServerError();
 
   @Before
   public void setup() throws Exception {
@@ -54,96 +55,64 @@ class OrderControllerTest {
   }
 
   @Test
-  public void getGreetingsReturns200() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS))
-        .andExpect(jsonPath("$", hasSize(2)))
+  public void getOrdersReturns200() throws Exception {
+    mockMvc.perform(get(CONTEXT_ORDERS))
+        .andExpect(jsonPath("$", hasSize(4)))
         .andExpect(okStatus);
   }
 
   @Test
-  public void getGreetingByIdThatExistsReturnsGreetingWithCorrectTypeAnd200() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/1"))
-        .andExpect(jsonPath("$.text").value("hello"))
+  public void getOrderByIdThatExistsReturnsOrderWithCorrectTypeAnd200() throws Exception {
+    mockMvc.perform(get(CONTEXT_ORDERS + "/1"))
+        .andExpect(jsonPath("$.date").value("2022-04-22"))
         .andExpect(expectedType).andExpect(okStatus);
   }
 
   @Test
-  public void getGreetingByIdThatDoesNotExistReturns404() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/999"))
+  public void getOrderByIdThatDoesNotExistReturns404() throws Exception {
+    mockMvc.perform(get(CONTEXT_ORDERS + "/999"))
         .andExpect(notFoundStatus);
   }
 
   @Test
-  public void getGreetingWithNegativeIdReturns400BadRequest() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/-1"))
+  public void getOrderWithNegativeIdReturns400BadRequest() throws Exception {
+    mockMvc.perform(get(CONTEXT_ORDERS + "/-1"))
         .andExpect(badRequestStatus);
   }
 
   @Test
-  public void postValidGreetingReturns201Created() throws Exception {
+  public void postValidOrderReturns201Created() throws Exception {
 
     String json = """
         {
-            "text": "how are you?"
+                "id": 1,
+                "customerId": 1,
+                "date": "2022-08-22",
+                "items": [
+                    {
+                        "id": 1,
+                        "productId": 1,
+                        "quantity": 12
+                    }
+                ],
+                "orderTotal": 23.99
         }""";
 
-    mockMvc.perform(post(CONTEXT_GREETINGS)
+    mockMvc.perform(post(CONTEXT_ORDERS)
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(createdStatus);
   }
 
   @Test
-  public void postNonUniqueGreetingReturns503UniqueViolationConstraint() throws Exception {
-
-    String json = """
-        {
-            "text": "hello"
-        }""";
-
-    mockMvc.perform(post(CONTEXT_GREETINGS)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(json))
-        .andExpect(uniqueViolationStatus);
-  }
-
-  @Test
-  public void postGreetingWithOnlyOneCharReturns400BadRequest() throws Exception {
-
-    String json = """
-        {
-            "text": "h"
-        }""";
-
-    mockMvc.perform(post(CONTEXT_GREETINGS)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(json))
-        .andExpect(badRequestStatus);
-  }
-
-  @Test
-  public void postNonStringGreetingReturns400BadRequest() throws Exception {
-
-    String json = """
-        {
-            "text": 12468465
-        }""";
-
-    mockMvc.perform(post(CONTEXT_GREETINGS)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(json))
-        .andExpect(badRequestStatus);
-  }
-
-  @Test
-  public void postEmptyGreetingJSONObjectReturns400BadRequest() throws Exception {
+  public void postInvalidOrderJSONObjectReturns400BadRequest() throws Exception {
 
     String json = """
         {
            
         }""";
 
-    mockMvc.perform(post(CONTEXT_GREETINGS)
+    mockMvc.perform(post(CONTEXT_ORDERS)
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(badRequestStatus);
@@ -151,14 +120,24 @@ class OrderControllerTest {
 
   @DirtiesContext
   @Test
-  public void putGreetingWithValidBodyAndExistingIdReturns200OK() throws Exception {
+  public void putOrderWithValidBodyAndExistingIdReturns200OK() throws Exception {
 
     String json = """
         {
-           "text": "this greeting has been updated"
+                "id": 2,
+                "customerId": 1,
+                "date": "2022-04-22",
+                "items": [
+                    {
+                        "id": 1,
+                        "productId": 1,
+                        "quantity": 10
+                    }
+                ],
+                "orderTotal": 3.99
         }""";
 
-    mockMvc.perform(put(CONTEXT_GREETINGS + "/1")
+    mockMvc.perform(put(CONTEXT_ORDERS + "/2")
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(okStatus);
@@ -166,26 +145,60 @@ class OrderControllerTest {
 
   @DirtiesContext
   @Test
-  public void putGreetingWithValidBodyAndNonExistingIdReturns404NotFound() throws Exception {
+  public void putOrderWithValidBodyAndNonExistingIdReturns404NotFound() throws Exception {
 
     String json = """
         {
-           "text": "this greeting has been updated"
+                "id": 999,
+                "customerId": 1,
+                "date": "2022-12-22",
+                "items": [
+                    {
+                        "id": 1,
+                        "productId": 1,
+                        "quantity": 10
+                    }
+                ],
+                "orderTotal": 3.99
         }""";
 
-    mockMvc.perform(put(CONTEXT_GREETINGS + "/999")
+    mockMvc.perform(put(CONTEXT_ORDERS + "/999")
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(notFoundStatus);
   }
 
   @Test
+  public void putOrderWithNegativeIdReturns400BadRequest() throws Exception {
+
+    String json = """
+        {
+                "id": -1,
+                "customerId": 1,
+                "date": "2022-04-22",
+                "items": [
+                    {
+                        "id": 1,
+                        "productId": 1,
+                        "quantity": 10
+                    }
+                ],
+                "orderTotal": 3.99
+        }""";
+
+    mockMvc.perform(put(CONTEXT_ORDERS + "/-1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
+        .andExpect(badRequestStatus);
+  }
+
+  @Test
   public void deleteReturns204NoContentAndStaysDeleted() throws Exception {
 
-    mockMvc.perform(delete(CONTEXT_GREETINGS + "/1"))
+    mockMvc.perform(delete(CONTEXT_ORDERS + "/1"))
         .andExpect(deletedStatus);
 
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/1"))
+    mockMvc.perform(get(CONTEXT_ORDERS + "/1"))
         .andExpect(notFoundStatus);
   }
 
