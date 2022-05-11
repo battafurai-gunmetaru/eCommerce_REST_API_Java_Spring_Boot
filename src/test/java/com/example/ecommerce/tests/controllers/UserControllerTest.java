@@ -104,7 +104,6 @@ class UserControllerTest {
   @DirtiesContext
   @Test
   public void postNonUniqueEmailUserThrows409Conflict() throws Exception {
-//todo fix this to throw conflict
     String json = """
         {
                 "name": "Ima Fischer",
