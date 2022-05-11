@@ -12,5 +12,5 @@ public class EcommerceApplication {
   public static void main(String[] args) {
     SpringApplication.run(EcommerceApplication.class, args);
   }
-// todo: unit & integration testing, postman (invalid put request tests), swagger docs, documentation, readme
+// todo: unit & integration testing, swagger docs, documentation, readme
 }
