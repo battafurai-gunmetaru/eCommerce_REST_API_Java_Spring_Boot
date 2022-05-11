@@ -910,3 +910,53 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2022-05-11 11:07:59.880  INFO 7170 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-05-11 11:07:59.881  INFO 7170 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
 2022-05-11 11:07:59.885  INFO 7170 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2022-05-11 17:05:52.098  INFO 21914 --- [main] c.e.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 18.0.1 on brandyn-HP-Desktop-M01-F0xxx with PID 21914 (/home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API/target/classes started by brandyn in /home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API)
+2022-05-11 17:05:52.111  INFO 21914 --- [main] c.e.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-05-11 17:05:55.480  INFO 21914 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-11 17:05:55.559  INFO 21914 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 69 ms. Found 6 JPA repository interfaces.
+2022-05-11 17:05:56.425  INFO 21914 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-05-11 17:05:56.437  INFO 21914 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-05-11 17:05:56.438  INFO 21914 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-05-11 17:05:56.592  INFO 21914 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-05-11 17:05:56.592  INFO 21914 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4384 ms
+2022-05-11 17:05:56.863  INFO 21914 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-11 17:05:56.906  INFO 21914 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-05-11 17:05:57.132  INFO 21914 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-11 17:05:57.254  INFO 21914 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-05-11 17:05:58.305  INFO 21914 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-05-11 17:05:58.360  INFO 21914 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-05-11 17:06:14.580  INFO 21914 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-11 17:06:14.590  INFO 21914 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-11 17:06:16.309  WARN 21914 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-11 17:06:16.991  INFO 21914 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-11 17:06:17.094  INFO 21914 --- [main] c.e.ecommerce.EcommerceApplication       : Started EcommerceApplication in 26.821 seconds (JVM running for 28.369)
+2022-05-11 17:07:11.360  INFO 21914 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-11 17:07:11.375  INFO 21914 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-05-11 17:07:11.378  INFO 21914 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2022-05-11 17:09:39.790  INFO 21914 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-05-11 17:09:39.815  INFO 21914 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-05-11 17:09:39.955  INFO 21914 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-05-11 17:09:49.866  INFO 22465 --- [main] c.e.ecommerce.EcommerceApplication       : Starting EcommerceApplication using Java 18.0.1 on brandyn-HP-Desktop-M01-F0xxx with PID 22465 (/home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API/target/classes started by brandyn in /home/brandyn/Desktop/Code/Java/ecommerce/eCommerce_API)
+2022-05-11 17:09:49.870  INFO 22465 --- [main] c.e.ecommerce.EcommerceApplication       : No active profile set, falling back to 1 default profile: "default"
+2022-05-11 17:09:53.909  INFO 22465 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-05-11 17:09:54.010  INFO 22465 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 6 JPA repository interfaces.
+2022-05-11 17:09:54.800  INFO 22465 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-05-11 17:09:54.812  INFO 22465 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-05-11 17:09:54.813  INFO 22465 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-05-11 17:09:54.954  INFO 22465 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-05-11 17:09:54.954  INFO 22465 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4980 ms
+2022-05-11 17:09:55.239  INFO 22465 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-05-11 17:09:55.301  INFO 22465 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-05-11 17:09:55.524  INFO 22465 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-05-11 17:09:55.645  INFO 22465 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-05-11 17:09:56.715  INFO 22465 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-05-11 17:09:56.777  INFO 22465 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2022-05-11 17:10:13.664  INFO 22465 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-05-11 17:10:13.675  INFO 22465 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-05-11 17:10:15.092  WARN 22465 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-05-11 17:10:17.667  INFO 22465 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-05-11 17:10:18.258  INFO 22465 --- [main] c.e.ecommerce.EcommerceApplication       : Started EcommerceApplication in 29.539 seconds (JVM running for 30.731)
+2022-05-11 17:10:33.730  INFO 22465 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-05-11 17:10:33.731  INFO 22465 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-05-11 17:10:33.732  INFO 22465 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2022-05-11 17:12:34.824  INFO 22465 --- [http-nio-8080-exec-6] c.e.e.controllers.UserController         : Wed May 11 17:12:34 EDT 2022Query request received for User{id=null, name='null', title='null', roles=null, email='null', password='null'}

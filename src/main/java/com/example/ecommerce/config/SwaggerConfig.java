@@ -1,5 +1,7 @@
 package com.example.ecommerce.config;
 
+import static springfox.documentation.builders.PathSelectors.regex;
+
 import com.google.common.base.Predicates;
 import java.util.Collections;
 import org.springframework.context.annotation.Bean;
@@ -25,18 +27,19 @@ public class SwaggerConfig {
         .pathMapping("/").enableUrlTemplating(true)
         .select()
         .paths(PathSelectors.any())
-        .paths(Predicates.not(PathSelectors.regex("/error")))
+        //.paths(regex("[^error]"))
         .build()
         .apiInfo(apiDetails());
   }
 
   private ApiInfo apiDetails() {
     return new ApiInfo(
-        "Greeting REST API",
-        "Java REST API project",
+        "Ecommerce REST API",
+        "Java REST API project for an ecommerce website",
         "1.0",
         "Sample",
-        new springfox.documentation.service.Contact("Brandyn Tse", "linkedInlink",
+        new springfox.documentation.service.Contact("Brandyn Tse",
+            "https://www.linkedin.com/in/brandyn-tse-085872166",
             "brandyntse941@gmail.com"),
         "n/a",
         "n/a",

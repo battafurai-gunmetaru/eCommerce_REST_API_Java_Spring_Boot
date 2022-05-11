@@ -8,6 +8,10 @@ import static com.example.ecommerce.constants.StringConstants.UPDATE_REQUEST;
 
 import com.example.ecommerce.models.Product;
 import com.example.ecommerce.services.ProductService;
+import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -30,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  * these methods to manipulate Product Objects/Entities. It handles requests about Product
  * information, which the user can send via URL.
  */
+@Api(value = "Product Controller")
 @RestController
 @RequestMapping(CONTEXT_PRODUCTS)
 public class ProductController {
@@ -47,6 +52,11 @@ public class ProductController {
    * of all Products if the query is empty.
    */
   @GetMapping
+  @Operation(summary = "Query Products",
+      description = "get all products, or products filtered according to custom query",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "List of Products")
+      })
   public ResponseEntity<List<Product>> queryProducts(Product product) {
     logger.info(new Date() + QUERY_REQUEST + product.toString());
 
@@ -60,6 +70,16 @@ public class ProductController {
    * @return a Product Object with the given id, if it exists.
    */
   @GetMapping("/{id}")
+  @Operation(summary = "get Product by product id",
+      parameters = {
+          @Parameter(name = "id", required = true,
+              description = "The id of the product to be retrieved", allowEmptyValue = false),
+      },
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Product with identical id"),
+          @ApiResponse(responseCode = "400", description = "Id must be positive"),
+          @ApiResponse(responseCode = "404", description = "Product with given id not found")
+      })
   public ResponseEntity<Product> getProductById(@PathVariable Long id) {
     logger.info(new Date() + QUERY_REQUEST + "product with id " + id);
 
@@ -73,6 +93,12 @@ public class ProductController {
    * @return the dta of the Product that was saved to the database, if successful.
    */
   @PostMapping
+  @Operation(summary = "post Product", description = "Creates a product from the request body",
+      responses = {
+          @ApiResponse(responseCode = "201", description = "Product created"),
+          @ApiResponse(responseCode = "400", description = "Invalid Product data"),
+          @ApiResponse(responseCode = "409", description = "Product sku already in use")
+      })
   public ResponseEntity<Product> postProduct(@Valid @RequestBody Product product) {
     logger.info(new Date() + POST_REQUEST + "product");
 
@@ -88,6 +114,13 @@ public class ProductController {
    * @return the successfully updated Product
    */
   @PutMapping("/{id}")
+  @Operation(summary = "put Product", description = "Updates a Product based on the request body",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "Product updated successfully"),
+          @ApiResponse(responseCode = "400", description = "Invalid Product data"),
+          @ApiResponse(responseCode = "409", description = "Product sku already in use"),
+          @ApiResponse(responseCode = "404", description = "Product not found")
+      })
   public ResponseEntity<Product> updateProductById(@PathVariable Long id,
       @Valid @RequestBody Product product) {
     logger.info(new Date() + UPDATE_REQUEST + "product with id " + id);
@@ -103,6 +136,12 @@ public class ProductController {
    * @return a deleted status, if the id exists in the database.
    */
   @DeleteMapping("/{id}")
+  @Operation(summary = "delete Product", description = "Deletes a product with matching id",
+      responses = {
+          @ApiResponse(responseCode = "204", description = "No Content. Product deleted"),
+          @ApiResponse(responseCode = "404", description = "Product not found"),
+          @ApiResponse(responseCode = "400", description = "id must be positive")
+      })
   public ResponseEntity<Product> deleteProductById(@PathVariable Long id) {
     logger.info(new Date() + DELETE_REQUEST + "product with id " + id);
 

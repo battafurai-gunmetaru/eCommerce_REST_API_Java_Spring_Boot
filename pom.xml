@@ -10,7 +10,7 @@
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.example</groupId>
-  <artifactId>rest-greeting</artifactId>
+  <artifactId>ecommerce</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>rest-greeting</name>
   <description>Demo project for Spring Boot</description>
@@ -106,13 +106,13 @@
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger-ui</artifactId>
-      <version>2.9.2</version>
+      <version>3.0.0</version>
     </dependency>
 
     <dependency>
       <groupId>io.springfox</groupId>
       <artifactId>springfox-swagger2</artifactId>
-      <version>2.9.2</version>
+      <version>3.0.0</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->

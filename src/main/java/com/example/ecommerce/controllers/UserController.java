@@ -8,6 +8,10 @@ import static com.example.ecommerce.constants.StringConstants.UPDATE_REQUEST;
 
 import com.example.ecommerce.models.User;
 import com.example.ecommerce.services.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
@@ -30,6 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  * methods to manipulate User Objects/Entities. It handles requests about User information, which
  * the user can send via URL.
  */
+@Api(value = "User Controller")
 @RestController
 @RequestMapping(CONTEXT_USERS)
 public class UserController {
@@ -47,6 +52,11 @@ public class UserController {
    * all Users if the query is empty.
    */
   @GetMapping
+  @Operation(summary = "Query Users",
+      description = "get all users, or users filtered according to custom query",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "List of Users")
+      })
   public ResponseEntity<List<User>> queryUsers(User user) {
     logger.info(new Date() + QUERY_REQUEST + user.toString());
 
@@ -60,6 +70,16 @@ public class UserController {
    * @return a User Object with the given id, if it exists.
    */
   @GetMapping("/{id}")
+  @Operation(summary = "get User by user id",
+      parameters = {
+          @Parameter(name = "id", required = true,
+              description = "The id of the user to be retrieved", allowEmptyValue = false),
+      },
+      responses = {
+          @ApiResponse(responseCode = "200", description = "User with identical id"),
+          @ApiResponse(responseCode = "400", description = "Id must be positive"),
+          @ApiResponse(responseCode = "404", description = "User with given id not found")
+      })
   public ResponseEntity<User> getUserById(@PathVariable Long id) {
     logger.info(new Date() + QUERY_REQUEST + "user with id " + id);
 
@@ -73,6 +93,12 @@ public class UserController {
    * @return the dta of the User that was saved to the database, if successful.
    */
   @PostMapping
+  @Operation(summary = "post User", description = "Creates a user from the request body",
+      responses = {
+          @ApiResponse(responseCode = "201", description = "User created"),
+          @ApiResponse(responseCode = "400", description = "Invalid User data"),
+          @ApiResponse(responseCode = "409", description = "User email already in use")
+      })
   public ResponseEntity<User> postUser(@Valid @RequestBody User user) {
     logger.info(new Date() + POST_REQUEST + "user");
 
@@ -88,6 +114,13 @@ public class UserController {
    * @return the successfully updated User
    */
   @PutMapping("/{id}")
+  @Operation(summary = "put User", description = "Updates a User based on the request body",
+      responses = {
+          @ApiResponse(responseCode = "200", description = "User updated successfully"),
+          @ApiResponse(responseCode = "400", description = "Invalid User data"),
+          @ApiResponse(responseCode = "409", description = "User email already in use"),
+          @ApiResponse(responseCode = "404", description = "User not found")
+      })
   public ResponseEntity<User> updateUserById(@PathVariable Long id,
       @Valid @RequestBody User user) {
     logger.info(new Date() + UPDATE_REQUEST + "user with id " + id);
@@ -103,6 +136,12 @@ public class UserController {
    * @return a deleted status, if the id exists in the database.
    */
   @DeleteMapping("/{id}")
+  @Operation(summary = "delete User", description = "Deletes a user with matching id",
+      responses = {
+          @ApiResponse(responseCode = "204", description = "No Content. User deleted"),
+          @ApiResponse(responseCode = "404", description = "User not found"),
+          @ApiResponse(responseCode = "400", description = "id must be positive")
+      })
   public ResponseEntity<User> deleteUserById(@PathVariable Long id) {
     logger.info(new Date() + DELETE_REQUEST + "user with id " + id);
 
