@@ -5,6 +5,9 @@ import java.util.List;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
+/**
+ * StateValidator contains the validation logic used for the custom validator annotation, State.
+ */
 public class StateValidator implements ConstraintValidator<State, String> {
 
   @Override

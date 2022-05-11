@@ -15,7 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-
+/**
+ * This class contains the methods that are called by the UserController, and implemented from
+ * the UserService interface.
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -23,9 +26,6 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   private UserRepository userRepository;
-
-//  @Autowired
-//  private UserService userService;
 
   @Override
   public List<User> queryUsers(User user) {

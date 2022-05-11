@@ -22,7 +22,9 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
-
+/**
+ * This Order Entity contains all information and properties about an Order and its properties.
+ */
 @Entity
 @Table(name = "orders")
 public class Order {

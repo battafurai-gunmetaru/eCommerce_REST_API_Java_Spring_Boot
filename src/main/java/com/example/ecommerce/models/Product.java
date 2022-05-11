@@ -13,7 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
+/**
+ * This Product Entity contains all information and properties about a Product Object.
+ */
 @Entity
 @Table(name = "products")
 public class Product {

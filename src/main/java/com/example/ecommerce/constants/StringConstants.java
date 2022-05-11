@@ -2,7 +2,7 @@ package com.example.ecommerce.constants;
 
 /**
  * This class contains constants used for mapping endpoints and relaying error messages. They are
- * used in the GreetingController, ExceptionController, and GreetingServiceImpl classes
+ * used in the Controllers and Service Implementation classes.
  */
 public class StringConstants {
 

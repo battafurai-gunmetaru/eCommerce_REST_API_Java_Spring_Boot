@@ -15,7 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-
+/**
+ * This class contains the methods that are called by the CustomerController, and implemented from
+ * the CustomerService interface.
+ */
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
@@ -23,9 +26,6 @@ public class CustomerServiceImpl implements CustomerService {
 
   @Autowired
   private CustomerRepository customerRepository;
-
-//  @Autowired
-//  private CustomerService customerService;
 
   @Override
   public List<Customer> queryCustomers(Customer customer) {
