@@ -1,6 +1,7 @@
 package com.example.ecommerce.tests.controllers;
 
-import static com.example.ecommerce.constants.StringConstants.CONTEXT_GREETINGS;
+import static com.example.ecommerce.constants.StringConstants.CONTEXT_USERS;
+import static com.example.ecommerce.constants.StringConstants.CONTEXT_USERS;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -8,7 +9,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.example.ecommerce.models.Greeting;
+import com.example.ecommerce.models.User;
+import com.example.ecommerce.models.User;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Contains the integration tests for the GreetingController.
+ * Contains the integration tests for the UserController.
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -37,7 +39,7 @@ class UserControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
-  Greeting greeting;
+  User user;
 
   ResultMatcher createdStatus = MockMvcResultMatchers.status().isCreated();
   ResultMatcher okStatus = MockMvcResultMatchers.status().isOk();
@@ -46,7 +48,7 @@ class UserControllerTest {
   ResultMatcher expectedType = MockMvcResultMatchers.content()
       .contentType(MediaType.APPLICATION_JSON);
   ResultMatcher badRequestStatus = MockMvcResultMatchers.status().isBadRequest();
-  ResultMatcher uniqueViolationStatus = MockMvcResultMatchers.status().is5xxServerError();
+  ResultMatcher conflictStatus = MockMvcResultMatchers.status().isConflict();
 
   @Before
   public void setup() throws Exception {
@@ -54,96 +56,81 @@ class UserControllerTest {
   }
 
   @Test
-  public void getGreetingsReturns200() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS))
-        .andExpect(jsonPath("$", hasSize(2)))
+  public void getUsersReturns200() throws Exception {
+    mockMvc.perform(get(CONTEXT_USERS))
+        .andExpect(jsonPath("$", hasSize(4)))
         .andExpect(okStatus);
   }
 
   @Test
-  public void getGreetingByIdThatExistsReturnsGreetingWithCorrectTypeAnd200() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/1"))
-        .andExpect(jsonPath("$.text").value("hello"))
+  public void getUserByIdThatExistsReturnsUserWithCorrectTypeAnd200() throws Exception {
+    mockMvc.perform(get(CONTEXT_USERS + "/1"))
+        .andExpect(jsonPath("$.name").value("Claire Redfield"))
         .andExpect(expectedType).andExpect(okStatus);
   }
 
   @Test
-  public void getGreetingByIdThatDoesNotExistReturns404() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/999"))
+  public void getUserByIdThatDoesNotExistReturns404() throws Exception {
+    mockMvc.perform(get(CONTEXT_USERS + "/999"))
         .andExpect(notFoundStatus);
   }
 
   @Test
-  public void getGreetingWithNegativeIdReturns400BadRequest() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/-1"))
+  public void getUserWithNegativeIdReturns400BadRequest() throws Exception {
+    mockMvc.perform(get(CONTEXT_USERS + "/-1"))
         .andExpect(badRequestStatus);
   }
 
   @Test
-  public void postValidGreetingReturns201Created() throws Exception {
+  public void postValidUserReturns201Created() throws Exception {
 
     String json = """
         {
-            "text": "how are you?"
+                "name": "Aaron Aarensen",
+                "title": "employee",
+                "roles": [
+                    "employee"
+                ],
+                "email": "aarensen@ecommerce.com",
+                "password": "anotherpassword12"
         }""";
 
-    mockMvc.perform(post(CONTEXT_GREETINGS)
+    mockMvc.perform(post(CONTEXT_USERS)
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(createdStatus);
   }
 
+  @DirtiesContext
   @Test
-  public void postNonUniqueGreetingReturns503UniqueViolationConstraint() throws Exception {
-
+  public void postNonUniqueEmailUserThrows409Conflict() throws Exception {
+//todo fix this to throw conflict
     String json = """
         {
-            "text": "hello"
+                "name": "Ima Fischer",
+                "title": "employee",
+                "roles": [
+                    "employee"
+                ],
+                "email": "dfohrs@ecommerce.com",
+                "password": "anotherpassword12"
         }""";
 
-    mockMvc.perform(post(CONTEXT_GREETINGS)
+    mockMvc.perform(post(CONTEXT_USERS)
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
-        .andExpect(uniqueViolationStatus);
+        .andExpect(conflictStatus);
   }
 
   @Test
-  public void postGreetingWithOnlyOneCharReturns400BadRequest() throws Exception {
-
-    String json = """
-        {
-            "text": "h"
-        }""";
-
-    mockMvc.perform(post(CONTEXT_GREETINGS)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(json))
-        .andExpect(badRequestStatus);
-  }
-
-  @Test
-  public void postNonStringGreetingReturns400BadRequest() throws Exception {
-
-    String json = """
-        {
-            "text": 12468465
-        }""";
-
-    mockMvc.perform(post(CONTEXT_GREETINGS)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(json))
-        .andExpect(badRequestStatus);
-  }
-
-  @Test
-  public void postEmptyGreetingJSONObjectReturns400BadRequest() throws Exception {
+  public void postInvalidUserJSONObjectReturns400BadRequest() throws Exception {
 
     String json = """
         {
            
         }""";
 
-    mockMvc.perform(post(CONTEXT_GREETINGS)
+    mockMvc.perform(post(CONTEXT_USERS)
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(badRequestStatus);
@@ -151,14 +138,20 @@ class UserControllerTest {
 
   @DirtiesContext
   @Test
-  public void putGreetingWithValidBodyAndExistingIdReturns200OK() throws Exception {
+  public void putUserWithValidBodyAndExistingIdReturns200OK() throws Exception {
 
     String json = """
-        {
-           "text": "this greeting has been updated"
+         {
+                "name": "Corey Redfield",
+                "title": "employee",
+                "roles": [
+                    "employee"
+                ],
+                "email": "credfield2@ecommerce.com",
+                "password": "justapassword12"
         }""";
 
-    mockMvc.perform(put(CONTEXT_GREETINGS + "/1")
+    mockMvc.perform(put(CONTEXT_USERS + "/1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(okStatus);
@@ -166,26 +159,52 @@ class UserControllerTest {
 
   @DirtiesContext
   @Test
-  public void putGreetingWithValidBodyAndNonExistingIdReturns404NotFound() throws Exception {
+  public void putUserWithValidBodyAndNonExistingIdReturns404NotFound() throws Exception {
 
     String json = """
-        {
-           "text": "this greeting has been updated"
+         {
+                "name": "Corey Redfield",
+                "title": "employee",
+                "roles": [
+                    "employee"
+                ],
+                "email": "credfield2@ecommerce.com",
+                "password": "justapassword12"
         }""";
 
-    mockMvc.perform(put(CONTEXT_GREETINGS + "/999")
+    mockMvc.perform(put(CONTEXT_USERS + "/999")
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(notFoundStatus);
   }
 
   @Test
+  public void putUserWithNegativeIdReturns400BadRequest() throws Exception {
+
+    String json = """
+         {
+                "name": "Corey Redfield",
+                "title": "employee",
+                "roles": [
+                    "employee"
+                ],
+                "email": "credfield2@ecommerce.com",
+                "password": "justapassword12"
+        }""";
+
+    mockMvc.perform(put(CONTEXT_USERS + "/-1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
+        .andExpect(badRequestStatus);
+  }
+
+  @Test
   public void deleteReturns204NoContentAndStaysDeleted() throws Exception {
 
-    mockMvc.perform(delete(CONTEXT_GREETINGS + "/1"))
+    mockMvc.perform(delete(CONTEXT_USERS + "/1"))
         .andExpect(deletedStatus);
 
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/1"))
+    mockMvc.perform(get(CONTEXT_USERS + "/1"))
         .andExpect(notFoundStatus);
   }
 

@@ -1,6 +1,7 @@
 package com.example.ecommerce.tests.controllers;
 
-import static com.example.ecommerce.constants.StringConstants.CONTEXT_GREETINGS;
+import static com.example.ecommerce.constants.StringConstants.CONTEXT_PRODUCTS;
+import static com.example.ecommerce.constants.StringConstants.CONTEXT_PRODUCTS;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -8,7 +9,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.example.ecommerce.models.Greeting;
+import com.example.ecommerce.models.Product;
+import com.example.ecommerce.models.Product;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +27,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 /**
- * Contains the integration tests for the GreetingController.
+ * Contains the integration tests for the ProductController.
  */
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -37,7 +39,7 @@ class ProductControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
-  Greeting greeting;
+  Product product;
 
   ResultMatcher createdStatus = MockMvcResultMatchers.status().isCreated();
   ResultMatcher okStatus = MockMvcResultMatchers.status().isOk();
@@ -46,7 +48,7 @@ class ProductControllerTest {
   ResultMatcher expectedType = MockMvcResultMatchers.content()
       .contentType(MediaType.APPLICATION_JSON);
   ResultMatcher badRequestStatus = MockMvcResultMatchers.status().isBadRequest();
-  ResultMatcher uniqueViolationStatus = MockMvcResultMatchers.status().is5xxServerError();
+  ResultMatcher conflictStatus = MockMvcResultMatchers.status().isConflict();
 
   @Before
   public void setup() throws Exception {
@@ -54,96 +56,79 @@ class ProductControllerTest {
   }
 
   @Test
-  public void getGreetingsReturns200() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS))
-        .andExpect(jsonPath("$", hasSize(2)))
+  public void getProductsReturns200() throws Exception {
+    mockMvc.perform(get(CONTEXT_PRODUCTS))
+        .andExpect(jsonPath("$", hasSize(4)))
         .andExpect(okStatus);
   }
 
   @Test
-  public void getGreetingByIdThatExistsReturnsGreetingWithCorrectTypeAnd200() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/1"))
-        .andExpect(jsonPath("$.text").value("hello"))
+  public void getProductByIdThatExistsReturnsProductWithCorrectTypeAnd200() throws Exception {
+    mockMvc.perform(get(CONTEXT_PRODUCTS + "/4"))
+        .andExpect(jsonPath("$.sku").value("FP-857"))
         .andExpect(expectedType).andExpect(okStatus);
   }
 
   @Test
-  public void getGreetingByIdThatDoesNotExistReturns404() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/999"))
+  public void getProductByIdThatDoesNotExistReturns404() throws Exception {
+    mockMvc.perform(get(CONTEXT_PRODUCTS + "/999"))
         .andExpect(notFoundStatus);
   }
 
   @Test
-  public void getGreetingWithNegativeIdReturns400BadRequest() throws Exception {
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/-1"))
+  public void getProductWithNegativeIdReturns400BadRequest() throws Exception {
+    mockMvc.perform(get(CONTEXT_PRODUCTS + "/-1"))
         .andExpect(badRequestStatus);
   }
 
   @Test
-  public void postValidGreetingReturns201Created() throws Exception {
+  public void postValidProductReturns201Created() throws Exception {
 
     String json = """
         {
-            "text": "how are you?"
+                "sku": "SB-RP12",
+                "type": "Candy",
+                "name": "Frisk Fresh Breath Spray",
+                "description": "Mint Flavor",
+                "manufacturer": "Frisk Fresh",
+                "price": 2.99
         }""";
 
-    mockMvc.perform(post(CONTEXT_GREETINGS)
+    mockMvc.perform(post(CONTEXT_PRODUCTS)
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(createdStatus);
   }
 
+  @DirtiesContext
   @Test
-  public void postNonUniqueGreetingReturns503UniqueViolationConstraint() throws Exception {
+  public void postNonUniqueSkuProductThrows409Conflict() throws Exception {
 
     String json = """
         {
-            "text": "hello"
+                "sku": "CS4-956",
+                "type": "Candy",
+                "name": "Frisk Fresh Breath Spray",
+                "description": "Mint Flavor",
+                "manufacturer": "Frisk Fresh",
+                "price": 2.99
         }""";
 
-    mockMvc.perform(post(CONTEXT_GREETINGS)
+    mockMvc.perform(post(CONTEXT_PRODUCTS)
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
-        .andExpect(uniqueViolationStatus);
+        .andExpect(conflictStatus);
   }
 
   @Test
-  public void postGreetingWithOnlyOneCharReturns400BadRequest() throws Exception {
-
-    String json = """
-        {
-            "text": "h"
-        }""";
-
-    mockMvc.perform(post(CONTEXT_GREETINGS)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(json))
-        .andExpect(badRequestStatus);
-  }
-
-  @Test
-  public void postNonStringGreetingReturns400BadRequest() throws Exception {
-
-    String json = """
-        {
-            "text": 12468465
-        }""";
-
-    mockMvc.perform(post(CONTEXT_GREETINGS)
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(json))
-        .andExpect(badRequestStatus);
-  }
-
-  @Test
-  public void postEmptyGreetingJSONObjectReturns400BadRequest() throws Exception {
+  public void postInvalidProductJSONObjectReturns400BadRequest() throws Exception {
 
     String json = """
         {
            
         }""";
 
-    mockMvc.perform(post(CONTEXT_GREETINGS)
+    mockMvc.perform(post(CONTEXT_PRODUCTS)
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(badRequestStatus);
@@ -151,14 +136,19 @@ class ProductControllerTest {
 
   @DirtiesContext
   @Test
-  public void putGreetingWithValidBodyAndExistingIdReturns200OK() throws Exception {
+  public void putProductWithValidBodyAndExistingIdReturns200OK() throws Exception {
 
     String json = """
         {
-           "text": "this greeting has been updated"
+                "sku": "FA-W124",
+                "type": "Alien Technology",
+                "name": "Alien Blaster",
+                "description": "A strange piece of alien technology. Maybe you can make it work?",
+                "manufacturer": "Wastelands",
+                "price": 1999.99
         }""";
 
-    mockMvc.perform(put(CONTEXT_GREETINGS + "/1")
+    mockMvc.perform(put(CONTEXT_PRODUCTS + "/1")
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(okStatus);
@@ -166,26 +156,50 @@ class ProductControllerTest {
 
   @DirtiesContext
   @Test
-  public void putGreetingWithValidBodyAndNonExistingIdReturns404NotFound() throws Exception {
+  public void putProductWithValidBodyAndNonExistingIdReturns404NotFound() throws Exception {
 
     String json = """
         {
-           "text": "this greeting has been updated"
+                "sku": "FA-W124",
+                "type": "Alien Technology",
+                "name": "Alien Blaster",
+                "description": "A strange piece of alien technology. Maybe you can make it work?",
+                "manufacturer": "Wastelands",
+                "price": 1999.99
         }""";
 
-    mockMvc.perform(put(CONTEXT_GREETINGS + "/999")
+    mockMvc.perform(put(CONTEXT_PRODUCTS + "/999")
             .contentType(MediaType.APPLICATION_JSON)
             .content(json))
         .andExpect(notFoundStatus);
   }
 
   @Test
+  public void putProductWithNegativeIdReturns400BadRequest() throws Exception {
+
+    String json = """
+        {
+                "sku": "FA-W124",
+                "type": "Alien Technology",
+                "name": "Alien Blaster",
+                "description": "A strange piece of alien technology. Maybe you can make it work?",
+                "manufacturer": "Wastelands",
+                "price": 1999.99
+        }""";
+
+    mockMvc.perform(put(CONTEXT_PRODUCTS + "/-1")
+            .contentType(MediaType.APPLICATION_JSON)
+            .content(json))
+        .andExpect(badRequestStatus);
+  }
+
+  @Test
   public void deleteReturns204NoContentAndStaysDeleted() throws Exception {
 
-    mockMvc.perform(delete(CONTEXT_GREETINGS + "/1"))
+    mockMvc.perform(delete(CONTEXT_PRODUCTS + "/1"))
         .andExpect(deletedStatus);
 
-    mockMvc.perform(get(CONTEXT_GREETINGS + "/1"))
+    mockMvc.perform(get(CONTEXT_PRODUCTS + "/1"))
         .andExpect(notFoundStatus);
   }
 
