@@ -3,7 +3,6 @@ package com.example.ecommerce.models;
 import static com.example.ecommerce.constants.StringConstants.BAD_DATA;
 import static com.example.ecommerce.constants.StringConstants.REQUIRED_FIELD;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -11,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;

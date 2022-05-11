@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public Product addProduct(Product product) {
     boolean productWithMatchingSku = productRepository.existsBySku(product.getSku());
-    if(productWithMatchingSku){
+    if (productWithMatchingSku) {
       throw new Conflict("SKU is already in use by another product!");
     }
     try {
@@ -80,7 +80,7 @@ public class ProductServiceImpl implements ProductService {
       throw new BadDataResponse("id must be positive and cannot be zero");
     }
     boolean productWithMatchingSku = productRepository.existsBySku(product.getSku());
-    if(productWithMatchingSku){
+    if (productWithMatchingSku) {
       throw new Conflict("SKU is already in use by another product!");
     }
     Product updatedProduct = null;
