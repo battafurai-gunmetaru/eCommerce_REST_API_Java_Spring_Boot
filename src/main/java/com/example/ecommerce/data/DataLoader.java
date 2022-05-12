@@ -63,7 +63,7 @@ public class DataLoader implements CommandLineRunner {
   private Product product;
   private Product productTwo;
   private Product productThree;
-  private Product productFour; // randomizer for products?
+  private Product productFour;
 
   private User user;
   private User userTwo;

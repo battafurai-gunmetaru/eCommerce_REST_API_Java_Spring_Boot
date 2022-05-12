@@ -80,7 +80,6 @@ class CustomerServiceImplTest {
 
   @Test
   public void getCustomerByExistingIdReturnsCustomer() {
-    //when(customerRepository.existsById(any(Long.class))).thenReturn(true);
     when(customerRepository.findById(any(Long.class))).thenReturn(Optional.of(customer));
     Customer result = customerServiceImpl.getCustomerById(1L);
     assertEquals(customer, result);
@@ -100,7 +99,6 @@ class CustomerServiceImplTest {
 
   @Test
   public void getCustomerByIdThrowsServiceUnavailable() {
-    //when(customerRepository.existsById(any(Long.class))).thenReturn(true);
     doThrow(ServiceUnavailable.class).when(customerRepository).findById(any(Long.class));
     assertThrows(ServiceUnavailable.class, () -> customerServiceImpl.getCustomerById(1L));
   }
@@ -112,7 +110,8 @@ class CustomerServiceImplTest {
     assertEquals(customer, result);
   }
 
-  @Test void postCustomerWithExistingEmailThrowsConflict409() {
+  @Test
+  void postCustomerWithExistingEmailThrowsConflict409() {
     when(customerRepository.existsByEmail(any(String.class))).thenReturn(true);
     assertThrows(Conflict.class, () -> customerServiceImpl.addCustomer(customer));
   }
@@ -164,7 +163,6 @@ class CustomerServiceImplTest {
 
   @Test
   public void deleteCustomerByExistentIdReturns204NoContent() {
-    //when(customerRepository.existsById(any(Long.class))).thenReturn(true);
     when(customerRepository.findById(any(Long.class))).thenReturn(Optional.of(customer));
     customerServiceImpl.deleteCustomerById(1L);
     verify(customerRepository).deleteById(any());

@@ -1,6 +1,5 @@
 package com.example.ecommerce.tests.services;
 
-import static com.example.ecommerce.constants.StringConstants.EMPLOYEE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -80,7 +79,6 @@ class ProductServiceImplTest {
 
   @Test
   public void getProductByExistingIdReturnsProduct() {
-    //when(productRepository.existsById(any(Long.class))).thenReturn(true);
     when(productRepository.findById(any(Long.class))).thenReturn(Optional.of(product));
     Product result = productServiceImpl.getProductById(1L);
     assertEquals(product, result);
@@ -100,7 +98,6 @@ class ProductServiceImplTest {
 
   @Test
   public void getProductByIdThrowsServiceUnavailable() {
-    //when(productRepository.existsById(any(Long.class))).thenReturn(true);
     doThrow(ServiceUnavailable.class).when(productRepository).findById(any(Long.class));
     assertThrows(ServiceUnavailable.class, () -> productServiceImpl.getProductById(1L));
   }
@@ -165,7 +162,6 @@ class ProductServiceImplTest {
 
   @Test
   public void deleteProductByExistentIdReturns204NoContent() {
-    //when(productRepository.existsById(any(Long.class))).thenReturn(true);
     when(productRepository.findById(any(Long.class))).thenReturn(Optional.of(product));
     productServiceImpl.deleteProductById(1L);
     verify(productRepository).deleteById(any());

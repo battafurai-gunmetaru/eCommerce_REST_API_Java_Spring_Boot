@@ -19,7 +19,6 @@ import com.example.ecommerce.services.OrderService;
 import com.example.ecommerce.services.OrderServiceImpl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
@@ -75,7 +74,7 @@ class OrderServiceImplTest {
   public void queryOrdersEmptyOrderReturnsCorrectOrders() {
     when(orderRepository.findAll()).thenReturn(orderList);
     Order emptyOrder = new Order(null, null, null, null);
-    List<Order> result = orderServiceImpl.queryOrders(emptyOrder); // pass in empty
+    List<Order> result = orderServiceImpl.queryOrders(emptyOrder);
     assertEquals(orderList, result);
   }
 
@@ -95,7 +94,6 @@ class OrderServiceImplTest {
 
   @Test
   public void getOrderByExistingIdReturnsOrder() {
-    //when(orderRepository.existsById(any(Long.class))).thenReturn(true);
     when(orderRepository.findById(any(Long.class))).thenReturn(Optional.of(order));
     Order result = orderServiceImpl.getOrderById(1L);
     assertEquals(order, result);

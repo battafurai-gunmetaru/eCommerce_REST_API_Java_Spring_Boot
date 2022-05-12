@@ -9,6 +9,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+
 /**
  * This Address embeddable contains all information and properties about an Address
  */

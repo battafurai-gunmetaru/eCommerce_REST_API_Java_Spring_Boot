@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
 /**
  * This Item Entity contains all information and properties about an Item Object.
  */
@@ -102,7 +103,7 @@ public class Item {
         && Objects.equals(order, item.order);
   }
 
-  @Override // infinite loop
+  @Override
   public int hashCode() {
     return Objects.hash(id, productId, quantity, order);
   }

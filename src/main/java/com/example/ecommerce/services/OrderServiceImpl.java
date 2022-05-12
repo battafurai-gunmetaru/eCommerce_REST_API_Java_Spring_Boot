@@ -14,9 +14,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+
 /**
- * This class contains the methods that are called by the OrderController, and implemented from
- * the OrderService interface.
+ * This class contains the methods that are called by the OrderController, and implemented from the
+ * OrderService interface.
  */
 @Service
 public class OrderServiceImpl implements OrderService {

@@ -22,6 +22,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.format.annotation.NumberFormat.Style;
+
 /**
  * This Order Entity contains all information and properties about an Order and its properties.
  */
@@ -37,8 +38,8 @@ public class Order {
   private Long customerId;
 
   @NotNull(message = "Date " + REQUIRED_FIELD)
-  @JsonFormat(pattern = "yyyy-MM-dd", lenient = OptBoolean.FALSE) // why is this here?
-  @DateTimeFormat(pattern = "yyyy-MM-dd") // does this do anything? todo validation
+  @JsonFormat(pattern = "yyyy-MM-dd", lenient = OptBoolean.FALSE)
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date date;
 
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

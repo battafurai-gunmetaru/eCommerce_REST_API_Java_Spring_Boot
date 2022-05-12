@@ -1,7 +1,6 @@
 package com.example.ecommerce.tests.controllers;
 
 import static com.example.ecommerce.constants.StringConstants.CONTEXT_CUSTOMERS;
-import static com.example.ecommerce.constants.StringConstants.CONTEXT_CUSTOMERS;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -9,7 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import com.example.ecommerce.models.Customer;
 import com.example.ecommerce.models.Customer;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;

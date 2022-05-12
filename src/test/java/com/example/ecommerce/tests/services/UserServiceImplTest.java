@@ -80,7 +80,6 @@ class UserServiceImplTest {
 
   @Test
   public void getUserByExistingIdReturnsUser() {
-    //when(userRepository.existsById(any(Long.class))).thenReturn(true);
     when(userRepository.findById(any(Long.class))).thenReturn(Optional.of(user));
     User result = userServiceImpl.getUserById(1L);
     assertEquals(user, result);
@@ -100,7 +99,6 @@ class UserServiceImplTest {
 
   @Test
   public void getUserByIdThrowsServiceUnavailable() {
-    //when(userRepository.existsById(any(Long.class))).thenReturn(true);
     doThrow(ServiceUnavailable.class).when(userRepository).findById(any(Long.class));
     assertThrows(ServiceUnavailable.class, () -> userServiceImpl.getUserById(1L));
   }
@@ -165,7 +163,6 @@ class UserServiceImplTest {
 
   @Test
   public void deleteUserByExistentIdReturns204NoContent() {
-    //when(userRepository.existsById(any(Long.class))).thenReturn(true);
     when(userRepository.findById(any(Long.class))).thenReturn(Optional.of(user));
     userServiceImpl.deleteUserById(1L);
     verify(userRepository).deleteById(any());

@@ -15,9 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+
 /**
- * This class contains the methods that are called by the UserController, and implemented from
- * the UserService interface.
+ * This class contains the methods that are called by the UserController, and implemented from the
+ * UserService interface.
  */
 @Service
 public class UserServiceImpl implements UserService {

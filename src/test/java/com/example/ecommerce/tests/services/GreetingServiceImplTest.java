@@ -76,7 +76,6 @@ class GreetingServiceImplTest {
 
   @Test
   public void getGreetingByExistingIdReturnsGreeting() {
-    //when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
     when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.of(greeting));
     Greeting result = greetingServiceImpl.getGreetingById(1L);
     assertEquals(greeting, result);
@@ -96,7 +95,6 @@ class GreetingServiceImplTest {
 
   @Test
   public void getGreetingByIdThrowsServiceUnavailable() {
-    //when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
     doThrow(ServiceUnavailable.class).when(greetingRepository).findById(any(Long.class));
     assertThrows(ServiceUnavailable.class, () -> greetingServiceImpl.getGreetingById(1L));
   }
@@ -148,7 +146,6 @@ class GreetingServiceImplTest {
 
   @Test
   public void deleteGreetingByExistentIdReturns204NoContent() {
-    //when(greetingRepository.existsById(any(Long.class))).thenReturn(true);
     when(greetingRepository.findById(any(Long.class))).thenReturn(Optional.of(greeting));
     greetingServiceImpl.deleteGreetingById(1L);
     verify(greetingRepository).deleteById(any());

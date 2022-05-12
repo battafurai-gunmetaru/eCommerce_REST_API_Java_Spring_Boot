@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
 /**
  * This Product Entity contains all information and properties about a Product Object.
  */
@@ -24,7 +25,7 @@ public class Product {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @NotBlank(message = "sku " + REQUIRED_FIELD) //todo validation
+  @NotBlank(message = "sku " + REQUIRED_FIELD)
   private String sku;
 
   @NotBlank(message = "type " + REQUIRED_FIELD)
@@ -41,7 +42,7 @@ public class Product {
   private String manufacturer;
 
   @NotNull(message = "price " + REQUIRED_FIELD)
-  private BigDecimal price; // might need ot put additional validation for price
+  private BigDecimal price;
 
   public Product() {
   }

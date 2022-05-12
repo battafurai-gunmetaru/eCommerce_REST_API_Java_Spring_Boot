@@ -12,7 +12,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 /**
  * This class configures the swagger documentation for the project, which can also be used for
- * manual testing of the endpoints in the controllers
+ * manual testing of the endpoints in the controller
  */
 @Configuration
 public class SwaggerConfig {

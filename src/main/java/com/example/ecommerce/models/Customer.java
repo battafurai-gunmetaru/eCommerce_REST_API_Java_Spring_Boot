@@ -14,9 +14,9 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
 /**
  * This Customer Entity contains all information and properties about a Customer Object(in this
- *
  */
 @Entity
 @Table(name = "customers")
@@ -31,7 +31,7 @@ public class Customer {
   private String name;
 
   @NotBlank(message = "email " + REQUIRED_FIELD)
-  @Email // might have to change to regexp
+  @Email
   @Column(unique = true)
   private String email;
 

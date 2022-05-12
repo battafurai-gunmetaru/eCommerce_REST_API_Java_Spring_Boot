@@ -5,6 +5,7 @@ import com.example.ecommerce.models.Customer;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
 /**
  * This repository is used for abstracting the storage, retrieval ond miscellaneous behavior for
  * Customer Objects.
