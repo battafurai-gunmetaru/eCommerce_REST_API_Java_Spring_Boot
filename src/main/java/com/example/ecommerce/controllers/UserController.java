@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.Date;
 import java.util.List;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class UserController {
   @GetMapping
   @Operation(summary = "Query Users",
       description = "get all users, or users filtered according to custom query",
-      responses = {
+      responses = { // todo: make query parameters optional instead of required
           @ApiResponse(responseCode = "200", description = "List of Users")
       })
   public ResponseEntity<List<User>> queryUsers(User user) {
